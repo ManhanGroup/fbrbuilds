@@ -1,0 +1,51 @@
+.hamburger {
+  $_color: $color_brand-primary;
+  $_width: 32px;
+  $_properties: 2px solid rgba($_color, 1);
+  $_activeTransition: transform .3s, top .2s, opacity .3s;
+
+  height: 0;
+  width: $_width;
+  margin: 0 auto;
+
+  opacity: 1;
+  border-bottom: $_properties;
+  transition: border-color .3s;
+
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    display: block;
+
+    width: $_width;
+    height: 0;
+    margin: 0 auto;
+
+    opacity: 1;
+    border-bottom: $_properties;
+    transform: rotate(0deg);
+    -webkit-transition: -webkit-transform .3s, top .2s, opacity .3s;
+    transition: $_activeTransition;
+  }
+
+  &:before { top: -8px; }
+  &:after { top: 8px; }
+
+  &.active {
+    opacity: 1;
+    border-color: rgba($_color, 0);
+    transition: border-color .3s;
+
+    &:before, &:after {
+      top: 0;
+
+      opacity: 1;
+      -webkit-transition: -webkit-transform .3s, top .2s, opacity .3s;
+      transition: $_activeTransition;
+    }
+
+    &:after { transform: rotate(45deg); }
+    &:before { transform: rotate(-45deg); }
+  }
+}
+

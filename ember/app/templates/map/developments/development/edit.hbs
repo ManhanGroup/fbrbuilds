@@ -1,0 +1,13 @@
+<section class="route map-developments-development-edit">
+  {{development-form
+    updateModel=(action createEdit)
+    isLoading=isCreating
+    loadingSpinnerText=loadingSpinnerText
+    submitText=submitText
+    model=model
+    editing=editing
+    updateEditing=(action updateEditing)
+    developmentTypeEnabled=false
+    mode='edit'
+  }}
+</section>

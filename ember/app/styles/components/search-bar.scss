@@ -1,0 +1,167 @@
+.component.search-bar {
+  width: 354px;
+  flex: 0 0 354px;
+  @include media('larger') {
+    flex: 0 0 320px;
+    width: 320px;
+  }
+  @include media('large') {
+    flex: 0 0 320px;
+    width: 320px;
+  }
+  @include media('medium') {
+    flex: 0 0 300px;
+    width: 300px;
+  }
+  @include media('medium-small') {
+    flex: 0 0 260px;
+    width: 260px;
+  }
+  .search-icon {
+    @extend ._vertical-center;
+    top: 48%;
+    left: 10px;
+    z-index: 1;
+
+    width: 15px;
+
+    opacity: .5;
+  }
+
+  input.search-input {
+    width: 100%;
+    padding: 8px 12px;
+    padding-left: 32px;
+
+    color: $color_font-medium;
+    font-size: 14px;
+    line-height: 20px;
+    height: 38px; // line-height + padding + border
+
+    border: 1px solid $color_brand-primary;
+    border-radius: 0 5px 5px 0;
+
+    outline: none;
+    transition: $transition_border;
+
+    &:focus, &:active {
+      border-color: $color_brand-primary--active;
+
+      transition: $transition_border;
+    }
+  }
+
+  .clear-search {
+    @extend ._vertical-center;
+
+    top: 45%;
+    left: auto;
+    right: 10px;
+
+    color: $color_brand-primary;
+
+    opacity: .1;
+    cursor: default;
+    transition: opacity .15s;
+
+    &.active {
+      opacity: .5;
+      cursor: pointer;
+
+      &:hover {
+        opacity: .85;
+        transition: opacity .15s;
+      }
+    }
+  }
+
+  .search-input-wrapper.searching > .search-input {
+    border-radius: 0 5px 0 0;
+  }
+
+
+  ul {
+    margin: 0;
+    max-height: 70vh;
+
+    overflow: scroll;
+    border: 1px solid $color_brand-primary;
+    border-top: none;
+    border-radius: 0 0px 5px 5px;
+  }
+
+  li {
+    padding: 8px 15px;
+    background: $color_bg-light;
+
+    cursor: pointer;
+
+    & + li:not(.group-title) {
+      border-top: 1px solid $color_bg-medium;
+    }
+
+    &.group-title {
+      padding: 5px 15px;
+
+      color: $color_font-light;
+
+      background: $color_bg-dark;
+      cursor: default;
+    }
+
+    &.active-filters {
+      font-size: 13px;
+
+      background: mix($color_brand-primary, $color_bg-light, 25%);
+      &:hover { background: mix($color_brand-primary, $color_bg-light, 20%); }
+      cursor: pointer;
+    }
+
+    &.create-new {
+      font-size: 13px;
+
+      background: $color_bg-brand;
+      border-top: 1px solid $color_bg-medium;
+    }
+
+    &.no-results {
+      font-size: 13px;
+
+      background: $color_bg-medium;
+      cursor: default;
+    }
+
+    &.loading {
+      font-size: 13px;
+      cursor: default;
+    }
+
+    &:not(.group-title):not(.no-results):not(.active-filters) {
+      &:hover { background: $color_bg-light--active; }
+    }
+
+    h4 {
+      font-size: 10px;
+      margin: 0;
+    }
+
+    h5 {
+      width: 100%;
+      margin: 0;
+
+      font-size: 16px;
+      font-weight: 600;
+
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    p {
+      margin: 0;
+
+      font-size: 11px;
+    }
+  }
+
+}

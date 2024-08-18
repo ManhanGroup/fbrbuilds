@@ -1,0 +1,86 @@
+{
+  "name": "fbrbuilds",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Ember frontend for FBRMPO's fbrbuilds application",
+  "license": "MIT",
+  "author": "Eric Youngberg <eyoungberg@mapc.org>",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "repository": "https://github.com/manhangroup/fbrbuilds",
+  "scripts": {
+    "build": "ember build",
+    "start": "ember server",
+    "test": "ember test"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.15",
+    "@ember/jquery": "^2.0.0",
+    "@ember/optional-features": "^2.0.0",
+    "@turf/boolean-point-in-polygon": "^6.5.0",
+    "@turf/center-of-mass": "^6.5.0",
+    "babel-eslint": "^8.0.2",
+    "broccoli-asset-rev": "^3.0.0",
+    "ember-auto-import": "^2.4.2",
+    "ember-cli": "^3.0.4",
+    "ember-cli-app-version": "^3.2.0",
+    "ember-cli-babel": "^7.0.0",
+    "ember-cli-dependency-checker": "^2.0.0",
+    "ember-cli-eslint": "^4.0.0",
+    "ember-cli-htmlbars": "^2.0.1",
+    "ember-cli-htmlbars-inline-precompile": "^1.0.0",
+    "ember-cli-inject-live-reload": "^1.4.1",
+    "ember-cli-moment-shim": "^3.5.0",
+    "ember-cli-sass": "8.0.1",
+    "ember-cli-shims": "^1.1.0",
+    "ember-cli-sri": "^2.1.0",
+    "ember-cli-uglify": "^2.0.0",
+    "ember-composable-helpers": "^2.1.0",
+    "ember-cookies": "^1",
+    "ember-data": "~3.0.0",
+    "ember-decorators": "^2",
+    "ember-export-application-global": "^2.0.0",
+    "ember-fetch": "^8.1.2",
+    "ember-file-upload": "3.0.5",
+    "ember-load-initializers": "^2.0.0",
+    "ember-math-helpers": "^2.3.0",
+    "ember-maybe-import-regenerator": "^0.1.6",
+    "ember-moment": "^8.0.0",
+    "ember-qunit": "^4.6.0",
+    "ember-radio-button": "^2.0.1",
+    "ember-resolver": "^4.0.0",
+    "ember-simple-auth": "^3.0.0",
+    "ember-source": "~3.0.0",
+    "ember-truth-helpers": "^2.0.0",
+    "ember-welcome-page": "^3.0.0",
+    "loader.js": "^4.2.3",
+    "lodash-es": "^4.17.21",
+    "mapbox-gl": "^1.0.0",
+    "qunit-dom": "^2.0.0",
+    "sass": "^1.64.2",
+    "url": "^0.11.2",
+    "webpack": "^5.61.0"
+  },
+  "engines": {
+    "node": ">=14.*"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all",
+      "not safari < 10",
+      "not chrome < 51",
+      "not android < 5",
+      "not ie < 12"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "packageManager": "yarn@3.6.4"
+}

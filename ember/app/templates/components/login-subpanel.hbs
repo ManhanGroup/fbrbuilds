@@ -1,0 +1,40 @@
+<header>
+  {{logo-collection}}
+  <p>A visual database for detailed information on real-estate developments in FBRMPO region. {{link-to 'Learn more' 'about'}}</p>
+</header>
+
+<form {{action login on="submit"}}>
+
+
+  <h2>Login</h2>
+
+  <div class="input-wrapper">
+    <img src="/assets/images/mail.svg">
+    {{input placeholder="Email" type="email" value=username}}
+  </div>
+
+  <div class="input-wrapper">
+    <img src="/assets/images/lock.svg">
+    {{input placeholder="Password" type="password" value=password}}
+  </div>
+
+  {{#if errorMessage}}
+    <div class="error-message">
+      {{errorMessage}}
+    </div>
+  {{/if}}
+
+  <div class="form-footer">
+    {{#loading-spinner message="Logging In" isLoading=isLoggingIn}}
+      <button class="submit {{unless submittable 'disabled'}}" type="submit">Login</button>
+    {{/loading-spinner}}
+
+    {{link-to 'Forgot password?' (query-params panel='reset-password')}}
+  </div>
+
+</form>
+
+<div class="auth-switch">
+  Don't have an account?
+  {{link-to 'Signup here' (query-params panel='signup')}}
+</div>

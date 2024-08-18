@@ -1,0 +1,93 @@
+<section class="route table-panel moderations-for-user">
+
+  <div class="left-panel-links">
+    {{#link-to 'map'}}
+      <img src="/assets/images/chevrons-left.svg">
+      Close
+    {{/link-to}}
+  </div>
+
+  <div class="panel-headers">
+    <h1>My Moderations</h1>
+    <h3>Listed below are all of the moderations you have created</h3>
+  </div> 
+
+  {{#if (gt moderations.length 0)}}
+    <ul class="item-list">
+      <li class="list-header">
+        <div class="row">
+          <div>Development</div>
+          <div>Status</div>
+          <div>Date Submitted</div>
+          <div></div>
+        </div>
+      </li>
+      <div class='list-body'>
+        {{#each moderations as |moderation|}} 
+          <li data-mod-id={{moderation.id}}>
+            <div class="row">
+              <div> 
+                {{#if moderation.development}}
+                  {{#link-to 'map.developments.development' moderation.development}}{{moderation.development.name}}{{/link-to}}
+                {{else}}
+                  {{moderation.changes.name.newValue}} <small>(New)</small>
+                {{/if}}
+              </div>
+              <div style="color: {{if moderation.approved '#51a681' '#eab941'}}">
+                {{if moderation.approved 'Approved' 'In Review'}}
+              </div>
+              <div>{{moderation.createdAt}}</div>
+              <div><button class="view-button" onclick={{action toggleViewModeration moderation.id}}>View Moderation</button></div> 
+            </div>
+            <div class='moderation-details'>
+              <ul>
+                {{#each-in moderation.changes as |k change|}} 
+                  <li>
+                  <b>{{change.name}}</b> has been changed 
+
+                  {{#unless moderation.approved}}
+                    from 
+
+                    <span>
+                      {{#if (and (not-eq change.oldValue null) (not-eq change.oldValue undefined))}} 
+                        {{change.oldValue}}
+                      {{else}}
+                        <em>none</em>
+                      {{/if}}
+                    </span>
+                  {{/unless}}
+
+                  to 
+
+                  <span>
+                    {{#if (and (not-eq change.newValue null) (not-eq change.newValue undefined))}}
+                      {{change.newValue}}
+                    {{else}}
+                      <em>none</em>
+                    {{/if}}
+                  </span>
+                  </li>
+                {{/each-in}}
+              </ul>
+              <div class="actions">
+                <button class="styled negative" onclick={{action delete moderation}}>
+                  Delete 
+                  {{#if moderation.changes.name.newValue}}
+                    Development
+                  {{else}}
+                    Moderation
+                  {{/if}}
+                </button>
+              </div>
+            </div>
+          </li>
+        {{/each}}
+      </div>
+    </ul>
+  {{else}}
+    <div class="no-records">
+      You have not created any moderations.
+    </div>
+  {{/if}}
+
+</section>

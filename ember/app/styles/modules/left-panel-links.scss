@@ -1,0 +1,29 @@
+.left-panel-links {
+  display: flex;
+  align-items: center;
+  a {
+    display: flex;
+    align-items: center;
+    &:hover { color: $color_brand-primary--active; }
+
+    & + a {
+      display: inline-lock;
+
+      margin-left: 5px;
+      padding-left: 10px;
+
+      border-left: 1px solid $color_bg-medium;
+    }
+    img { top: -1px; }
+  }
+
+  button {
+    &:hover {
+      color: $color_brand-primary--active;
+    }
+    display: flex;
+    align-items: center;
+  }
+
+
+}

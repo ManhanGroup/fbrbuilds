@@ -1,0 +1,44 @@
+.route.users-index {
+
+  width: 100%;
+  padding: 10px 20px;
+
+  input {
+    width: 60%;
+    margin-bottom: 10px;
+    padding: 6px 10px;
+
+    background: mix($color_bg-light--active, $color_brand-primary, 90%);
+    border: none;
+    outline: none;
+    transition: background .15s;
+
+    &:focus, &:active {
+      background: mix($color_bg-light--active, $color_brand-primary, 80%);
+      transition: background .15s;
+    }
+  }
+
+  .user-filters {
+    float: right;
+
+    font-size: 12px;
+  }
+
+  .table-wrapper {
+    border-color: $color_brand-primary;
+    border-style: solid;
+    border-width: 1px 0;
+    margin-top: 15px;
+    height: calc(100vh - 200px);
+    overflow: scroll;
+  }
+
+  .no-users {
+    width: 100%;
+    margin-top: 50px;
+
+    color: $color_font-medium;
+    text-align: center;
+  }
+}

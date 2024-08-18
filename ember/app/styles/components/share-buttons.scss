@@ -1,0 +1,80 @@
+.component.share-buttons {
+
+  position: absolute;
+  right: calc(100% + 15px);
+  bottom: 0;
+  transition: bottom 0.3s ease-in 0s;
+  &.hidden {
+    transition: bottom 0.3s ease-out 0s;
+    bottom: -95px;
+  }
+
+  $toggle_width: 45px;
+  $border_width: 1px;
+
+  button {
+    height: $toggle_width;
+
+    background: $color_bg-light;
+    border: 0;
+    border-radius: 0;
+
+    outline: none;
+    transition: background .15s;
+
+    &:not(.toggler):hover {
+      background: $color_bg-light--active;
+
+      transition: background .15s;
+    }
+
+    > img {
+      @extend ._vertical-center;
+
+      margin: 0 auto;
+      opacity: .7;
+    }
+  }
+
+  .share-buttons-wrapper {
+    background-color: $color_brand-primary;
+    border: 1px solid $color_brand-primary;
+    border-radius: 5px;
+  }
+  .share-buttons-header {
+    color: $color_bg-light;
+    font-size: 0.8em;
+    padding: 2px 5px;
+  }
+  .share-buttons-buttons {
+    border-radius: 5px;
+    display: flex;
+    overflow: hidden;
+  }
+
+  .share-button {
+    font-weight: 200;
+    width: $toggle_width + ($border_width * 2);
+    display: block;
+    &:not(:last-child) {
+      border-right: 1px solid $color_bg-medium;
+    }
+  }
+
+  .link-message {
+    position: absolute;
+
+    right: calc(100% + 5px);
+    bottom: 8px;
+    width: max-content;
+    z-index: 10;
+
+    padding: 6px 8px;
+
+    font-size: 12px;
+
+    background: $color_bg-light;
+    border: 1px solid $color_brand-primary--active;
+    border-radius: 5px;
+  }
+}

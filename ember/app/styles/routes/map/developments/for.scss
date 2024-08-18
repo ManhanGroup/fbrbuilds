@@ -1,0 +1,18 @@
+.route.developments-for-user {
+
+  width: 100%;
+  padding: 10px 20px;
+
+  ul.item-list {
+    li {
+      & > div {
+        &:first-of-type {
+          flex: 1 0 35%;
+        }
+        &:nth-of-type(2) { flex: 1 0 50%; }
+        &:last-of-type { flex: 1 0 15%; }
+      }
+    }
+  }
+
+}

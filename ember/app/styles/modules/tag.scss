@@ -1,0 +1,31 @@
+.tag {
+  display: inline-block;
+
+  padding: 6px 14px;
+
+  color: $color_font-light;
+  font-size: 14px;
+
+  background: $color_bg-medium;
+  border-radius: 5px;
+
+  &.active {
+    background: $color_brand-secondary; 
+  }
+
+  &.inactive {
+    background: $color_state-negative; 
+
+    span {
+      display: inline-block;
+
+      margin-left: 10px;
+
+      color: $color_state-negative--dark; 
+      
+      cursor: pointer;
+
+      &:hover { color: darken($color_state-negative--dark, 10%); }
+    }
+  }
+}

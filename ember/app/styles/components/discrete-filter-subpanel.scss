@@ -1,0 +1,147 @@
+.component.subpanel.discrete-filter {
+  $height: 36px;
+  $border_width: 3px;
+
+  width: 100%;
+
+  .subviews {
+    display: flex;
+
+    width: 100%;
+    height: $height;
+    overflow: hidden;
+
+    button {
+      flex: 0 0 50%;
+
+      border: 0;
+      border-bottom: 1px solid $color_bg-medium;
+      padding: 0 0 ($border-width - 1px) 0;
+      &:first-of-type { border-right: 1px solid $color_bg-medium; }
+
+      &.active {
+        border-bottom: $border_width solid $color_brand-primary;
+        padding-bottom: 1px;
+      }
+
+      img {
+        top: 3px;
+        height: 15px;
+        margin: 0 auto;
+
+        & + em {
+          display: inline-block;
+
+          margin-left: 4px;
+          padding: 1px 8px;
+
+          font-size: 12px;
+
+          border-left: 1px solid $color_bg-medium;
+        }
+      }
+    }
+  }
+
+  .subview {
+    input {
+      height: $height;
+      width: 100%;
+      padding: 4px 10px;
+
+      font-size: 12px;
+
+      background: none;
+      border: 0;
+      border-bottom: 1px solid $color_bg-medium;
+
+      outline: none;
+    }
+  }
+
+  .no-selections {
+    padding: 25px 10px;
+
+    color: $color_font-medium;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .list-wrapper {
+    padding: 6px 0 35px 10px;
+  }
+
+  ul {
+    height: 65vh;
+    margin-top: 0;
+
+    overflow-y: scroll;
+
+    li {
+      width: 100%;
+      padding: 3px 0;
+      padding-right: 40px;
+
+      font-size: $filter_font_size;
+      text-overflow: ellipsis;
+
+      white-space: nowrap;
+      overflow: hidden;
+
+      img.selected-filter {
+        height: 12px;
+        width: auto;
+      }
+
+      span {
+        cursor: pointer;
+
+        &:hover { color: $color_brand-primary--active; }
+      }
+
+      &.is-selected {
+        padding-left: 14px;
+        &:before {
+          @extend ._vertical-center;
+          $size: 7px;
+
+          content: '';
+          left: 0;
+          display: block;
+
+          width: $size;
+          height: $size;
+
+          background: $color_brand-primary;
+          border-radius: 50%;
+        }
+        .discrete-value-actions button {
+          transform: rotate(45deg);
+
+          &:hover {
+            color: $color_state-negative;
+          }
+        }
+      }
+    }
+  }
+
+  .discrete-value-actions {
+    @extend ._vertical-center;
+    left: auto;
+    right: 0;
+    z-index: 20;
+
+    button {
+      font-size: 18px;
+
+      background: none;
+      border: none;
+
+      &:hover {
+        color: $color_brand-primary--active;
+      }
+    }
+  }
+
+}

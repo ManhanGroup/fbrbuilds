@@ -1,0 +1,74 @@
+<div class="search-input-wrapper {{if (or searching showFiltersActive) 'searching'}}">
+  <img src="/assets/images/search.svg" class="search-icon">
+  {{input class="search-input" value=searchQuery placeholder=placeholder autocomplete="off"}}
+  <span class="clear-search {{if (or searching activeFilters) 'active'}}" onclick={{action clearSearch}}>x</span>
+</div>
+
+{{#if (and (or searching showFiltersActive) (not disabled))}}
+  <ul class="search-list">
+
+    {{#if (and showFiltersActive (not filterPanelOpen))}}
+      <li class="active-filters" onclick={{action toggleFilters}}>
+        {{numberOfActiveFilters}} active filter{{if (gt numberOfActiveFilters 1) 's'}}
+      </li>
+    {{/if}}
+
+    {{#if searching}}
+      {{#each-in searchList as |groupTitle group|}}
+        {{#if group}}
+          <li class="group-title">
+            <h4>{{groupTitle}}</h4>
+          </li>
+
+          {{#each group as |item|}}
+            <li onclick={{action selectItem item}}>
+              <h5>{{item.value}}</h5>
+              <p>{{item.name}}</p>
+            </li>
+          {{/each}}
+        {{/if}}
+      {{/each-in}}
+
+      {{#if (eq searchListCount 0)}}
+        <li class="group-title">
+          <h4>Developments</h4>
+        </li>
+        <li class="no-results">
+          No existing developments found
+        </li>
+      {{/if}}
+
+      <li class="group-title">
+        <h4>Zoom to</h4>
+      </li>
+      {{#each gotoList as |item|}}
+        <li onclick={{action goto item.geometry}}>
+          <h5>{{item.label}}</h5>
+          <p>{{item.type}}</p>
+        </li>
+      {{/each}}
+      {{#if loading}}
+        <li class="loading">
+          Loading...
+        </li>
+      {{/if}}
+
+      {{#if (and (eq gotoList.length 0) (not loading))}}
+        <li class="no-results">
+          No addresses found
+        </li>
+      {{/if}}
+    {{/if}}
+
+
+
+    {{#if (and searching (and hasPermissions (lt searchListCount 6) (not (eq appCtrl.currentRouteName 'map.developments.create'))))}}
+      {{#link-to 'map.developments.create'}}
+        <li class="create-new">
+          Can't find what you're looking for? <b>Click here</b> to submit
+          a development to the database.
+        </li>
+      {{/link-to}}
+    {{/if}}
+  </ul>
+{{/if}}

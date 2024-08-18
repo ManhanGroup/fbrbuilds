@@ -1,0 +1,19 @@
+{{#if session.isAuthenticated}}
+  {{removePanelParam}}
+  {{account-subpanel 
+    hideFilters=(action hideFilters)
+    toggleMenu=(action toggleMenu)
+  }}
+{{else}}
+  {{#if (eq panel 'signup')}}
+    {{signup-subpanel}}
+  {{else}}
+    {{#if (eq panel 'reset-password')}}
+      {{password-reset-subpanel
+        redirect=showLoginForm 
+      }}
+    {{else}}
+      {{login-subpanel}}
+    {{/if}}
+  {{/if}}
+{{/if}}

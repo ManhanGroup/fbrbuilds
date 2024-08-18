@@ -1,0 +1,36 @@
+<section class="route info-page glossary">
+
+  <header>
+    {{logo-collection pheader=true}}
+
+    {{link-to 'Back to fbrbuilds' 'map'}}
+  </header>
+
+  <main>
+    <h1>Glossary</h1>
+
+    <ul class="terms-list">
+      {{#each glossaryTerms as |term|}}
+        {{#if term.table }}
+          {{glossary-list-table-item
+            label=term.label
+            definition=term.definition
+            unitsLong=term.unitsLong
+            table=term.table
+          }}
+        {{else}}
+          {{glossary-list-item
+            label=term.label
+            definition=term.definition
+            unitsLong=term.unitsLong
+          }}
+        {{/if}}
+      {{/each}}
+    </ul>
+  </main>
+
+  <footer>
+    {{footerlogo-collection}}
+  </footer>
+
+</section>

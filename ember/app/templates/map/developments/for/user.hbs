@@ -1,0 +1,46 @@
+<section class="route table-panel developments-for-user">
+
+
+
+  <div class="panel-headers">
+    <h1>My Developments</h1>
+    <div class="left-panel-links">
+      {{#link-to 'map'}}
+        <img src="/assets/images/chevrons-left.svg">
+        Close
+      {{/link-to}}
+    </div>
+  </div>
+
+  <div class="panel-description">
+    <p>Listed below are all of the developments you have created</p>
+  </div>
+
+  {{#if developments}}
+    <ul class="item-list">
+      <li class="list-header">
+        <div>Name</div>
+        <div>Address</div>
+        <div>Status</div>
+      </li>
+      <div class='list-body'>
+        {{#each developments as |development|}}
+          <li>
+            <div>
+              {{#link-to 'map.developments.development' development}}{{development.name}}{{/link-to}}
+            </div>
+            <div>
+              {{#link-to 'map.developments.development' development}}{{development.fullAddress}}{{/link-to}}
+            </div>
+            <div style="color: {{status-color development.status}}">{{capitalize development.status}}</div>
+          </li>
+        {{/each}}
+      </div>
+    </ul>
+  {{else}}
+    <div class="no-records">
+      You have not created any developments. Would you like to {{link-to 'create one' 'map.developments.create'}}?
+    </div>
+  {{/if}}
+
+</section>

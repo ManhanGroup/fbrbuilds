@@ -1,0 +1,125 @@
+<section class='route map'>
+  {{welcome-modal}}
+  {{click-catcher}}
+  <!-- floating components -->
+
+  <div class="top-right-buttons {{if showingMenu 'active'}}">
+    <button class="toggler menu-toggler" onclick={{action toggleMenu}}>
+      <span class="hamburger {{if showingMenu 'active'}}"></span>
+    </button>
+  </div>
+
+  {{notifications-popup}}
+  <!--/ floating components -->
+
+  <div class="panel-layer left-panel-layer {{leftPanelClass}} {{if showingLeftPanel 'active'}}">
+
+      {{#if showingFilters}}
+        {{filter-panel
+          update=(action updateFilter)
+          activeFilters=activeFilters
+          toggleFilters=(action toggleFilters)
+        }}
+      {{else}}
+        <div class="overflow-scroll">
+          {{outlet}}
+        </div>
+      {{/if}}
+
+    <div class="search-wrapper {{if (not (and showingLeftPanel showingMenu)) 'active'}}">
+      <div class="filter-actions">
+        <button
+          onclick={{action toggleFilters}}
+          class="filter-toggler {{if showingFilters 'active'}} {{if filtering 'filtering'}}"
+          disabled={{showingGoto}}>
+          <img src="/assets/images/filter.svg">
+        </button>
+        <button
+          onclick={{action clearFilters}}
+          class="clear-filters"
+          disabled={{or showingGoto (not filtering)}}>
+          X
+        </button>
+      </div>
+
+      {{search-bar
+        addDiscreteFilter=(action addDiscreteFilter)
+        viewDevelopment=(action viewDevelopment)
+        searchQuery=searchQuery
+        placeholder=searchPlaceholder
+        showFiltersActive=(and activeFilters (not showingFilters))
+        numberOfActiveFilters=activeFilters.length
+        toggleFilters=(action toggleFilters)
+        model=map.stored
+        disabled=(and showingLeftPanel showingMenu)
+      }}
+    </div>
+    <div class="top-middle-select">
+      {{rpa-selector rpas=lstrpas.lstrpas selectedAction="getCityBoundary" getCityBoundary=(action getCityBoundary)}}
+    </div>
+    <div class="legend-wrapper">
+      {{map-legend showing=showingFilters}}
+      <div class="map-button-pair map-zoom-buttons">
+        <button class="selector" onclick={{action setZoomCommand 'IN'}}>
+          +
+        </button>
+        <button class="selector" onclick={{action setZoomCommand 'OUT'}}>
+          -
+        </button>
+      </div>
+      <div class="map-button-pair map-basemap-buttons">
+        <button class="selector" disabled={{eq baseMap 'light'}} onclick={{action setBaseMap 'light'}}>
+          Map
+        </button>
+        <button class="selector" disabled={{eq baseMap 'satellite'}} onclick={{action setBaseMap 'satellite'}}>
+          Satellite
+        </button>
+        <button class="selector" disabled={{lt currentZoom 11}} onclick={{action toggleParcelTile}}>
+          Parcel
+        </button>
+      </div>
+      <div class="info-links">
+        {{link-to 'Glossary' 'glossary'}}
+        {{link-to 'About' 'about'}}
+      </div>
+    </div>
+  </div>
+
+  <div class="map-layer">
+
+    {{#unless (or map.stored map.filteredData)}}
+      <div class="map-loading-overlay">
+        <div class="loading-text">
+          <h1>fbrbuilds</h1>
+
+          <div class="loader">
+            <span class="spinning-box"></span>
+            Mapping Developments
+          </div>
+        </div>
+      </div>
+    {{/unless}}
+    {{mapbox-map
+      activeFilters=activeFilters
+      viewDevelopment=(action viewDevelopment)
+    }}
+  </div>
+
+  <div class="panel-layer right-panel-layer {{if showingMenu 'active'}}">
+    {{user-panel
+      panel=panel
+      hideFilters=(action hideFilters)
+      toggleMenu=(action toggleMenu)
+      showLoginPanel=showLoginPanel
+      showSignupPanel=showSignupPanel
+    }}
+    {{#if currentUser.user}}
+      {{share-buttons
+        filterParams=filterParams
+        hidden=(and showingLeftPanel showingMenu)
+      }}
+    {{/if}}
+    {{agency-footer}}
+  </div>
+
+</section>
