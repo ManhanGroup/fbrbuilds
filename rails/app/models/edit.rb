@@ -184,7 +184,7 @@ class Edit < ApplicationRecord
         "municipal": {
           "type": "string"
         },
-        "apn": {
+        "pinnum": {
           "type": "string"
         },
         "devlper": {

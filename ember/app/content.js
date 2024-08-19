@@ -15,9 +15,9 @@ for (let key in glucDicts ) {
 
 const content = {
   GLOSSARY: {
-    APN:{
-      label: 'Parcel APN',
-      definition: ['Parcel APN.']},
+    PINNUM:{
+      label: 'Parcel Number',
+      definition: ['Parcel Number.']},
     STREET_ADDRESS: {
       label: 'Street Address',
       definition: ['Enter the street address of the project and Zip Code (required in order to submit the project). If exact address is unknown or covers a wide area, enter an address as close to the site as possible and note that address is not exact/site spans a wide area in the Description.'],

@@ -105,7 +105,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_26_044227) do
     t.boolean "proj_id_present"
     t.boolean "traffic_count_data_present"
     t.integer "taz"
-    t.string "apn"
+    t.string "pinnum"
     t.boolean "trunc", default: false
     t.string "gluc"
     t.string "placetype"
@@ -173,12 +173,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_26_044227) do
   create_table "parcels", primary_key: "gid", id: :serial, force: :cascade do |t|
     t.decimal "objectid", precision: 10
     t.string "muni"
-    t.string "poly_typ", limit: 18
     t.string "site_addr", limit: 80
     t.string "addr_zip", limit: 12
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon"}
     t.json "geojson"
-    t.string "apn"
+    t.string "pinnum"
     t.string "agency"
     t.index ["geom"], name: "parcels_geom_idx", using: :gist
   end

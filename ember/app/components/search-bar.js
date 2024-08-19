@@ -16,7 +16,7 @@ export default class extends Component {
     super();
 
     this.classNames = ['component', 'search-bar'];
-    this.sortOrder = ['municipal', 'nhood', 'apn','devlper', 'name', 'address'];
+    this.sortOrder = ['municipal', 'nhood', 'pinnum','devlper', 'name', 'address'];
     this.appCtrl = getOwner(this).lookup('controller:application');
     this.loading = false;
     this.settledSearchQuery = '';
@@ -38,8 +38,8 @@ export default class extends Component {
   }
 
   @computed('developments.[]')
-  get apn() {
-    return this.uniqueValuesFor('apn');
+  get pinnum() {
+    return this.uniqueValuesFor('pinnum');
   }
 
   @computed('developments.[]')

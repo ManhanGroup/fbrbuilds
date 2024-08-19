@@ -25,7 +25,7 @@ export default class extends DS.Model {
   @attr('string') parcelId;
   @attr('string') municipal;
   @attr('string') county;
-  @attr('string') apn;
+  @attr('string') pinnum;
   @attr('string') devlper;
   @attr('string') trafficCountData;
   @attr('string') mixDescr;

@@ -4,7 +4,7 @@ class FullDevelopmentSerializer
 
   belongs_to :user
 
-  [:id, :name, :status, :stat_comts, :address, :year_compl, :yrcomp_est, :nhood, :municipal,:apn,
+  [:id, :name, :status, :stat_comts, :address, :year_compl, :yrcomp_est, :nhood, :municipal,:pinnum,
     :devlper, :user_id, :rdv, :asofright, :ovr55, :clusteros, :phased, :stalled, :county,
     :descr,:notes, :prj_url,:gluc,:placetype, :state, :zip_code, :percomp_25, :percomp_30,
     :percomp_35,:percomp_40,  :percomp_45, :prjarea,

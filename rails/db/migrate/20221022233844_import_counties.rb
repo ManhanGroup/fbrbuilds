@@ -5,7 +5,7 @@ class ImportCounties< ActiveRecord::Migration[7.0]
       t.string "countyns"
 	  t.string "county"
 	  t.string "namelsad"
-	  t.geometry "shape", limit: {:srid=>4269, :type=>"multi_polygon"}
+	  t.geometry "shape", limit: {:srid=>4326, :type=>"multi_polygon"}
       t.index ["shape"], name: "counties_polym_shape_idx", using: :gist
     end
     config   = Rails.configuration.database_configuration

@@ -6,7 +6,7 @@ export default class extends DS.Model {
 
   @attr('number') gid
   @attr('string') muni
-  @attr('string') apn
+  @attr('string') pinnum
   @attr('string') site_addr
   @attr('json') geojson
 

@@ -7,7 +7,7 @@ class Development < ApplicationRecord
   belongs_to :user
   include PgSearch::Model
   include ActiveModel::Dirty
-  pg_search_scope :search_by_name_and_location, against: [:name, :municipal, :address, :apn], using: { tsearch: { any_word: true } }
+  pg_search_scope :search_by_name_and_location, against: [:name, :municipal, :address, :pinnum], using: { tsearch: { any_word: true } }
   validates :name, :status, :latitude, :longitude, :year_compl, :hu,
             :commsf, :descr, presence: true
   validates_inclusion_of :rdv, :asofright, :clusteros, :phased, :stalled, :mixed_use,
@@ -40,7 +40,7 @@ class Development < ApplicationRecord
   before_save :set_traffic_count_data_present
   before_save :set_proj_id_present
   
-  after_save :update_apn
+  after_save :update_pinnum
   after_save :update_rpa
   after_save :update_county
   after_save :update_municipality
@@ -242,7 +242,7 @@ class Development < ApplicationRecord
     rpa_query = <<~SQL
       SELECT name as rpa_name, shape
       FROM rpas
-      WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326), 4269), shape);
+      WHERE ST_Intersects(ST_GeomFromText('#{point}', 4326), shape);
     SQL
     sql_result = ActiveRecord::Base.connection.exec_query(rpa_query).to_a[0]
     return if sql_result.blank?
@@ -254,7 +254,7 @@ class Development < ApplicationRecord
     counties_query = <<~SQL
       SELECT geoid, county, shape
       FROM counties
-      WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326), 4269), shape);
+      WHERE ST_Intersects(ST_GeomFromText('#{point}', 4326), shape);
     SQL
     sql_result = ActiveRecord::Base.connection.exec_query(counties_query).to_a[0]
     return if sql_result.blank?
@@ -271,7 +271,7 @@ class Development < ApplicationRecord
     municipalities_query = <<~SQL
       SELECT replace(initcap(namelsad), ' Cdp', ' CDP') as namelsad, geom
       FROM places
-      WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326), 4269), geom);
+      WHERE ST_Intersects(ST_GeomFromText('#{point}', 4326), geom);
     SQL
     sql_result = ActiveRecord::Base.connection.exec_query(municipalities_query).to_a[0]
     return if sql_result.blank?
@@ -279,19 +279,19 @@ class Development < ApplicationRecord
     self.update_columns(municipal: sql_result['namelsad'])
   end
 
-  def update_apn
+  def update_pinnum
     return if !saved_change_to_point?
-    apn_query = <<~SQL
-      SELECT apn, site_addr, muni, addr_zip, geom
+    pinnum_query = <<~SQL
+      SELECT pinnum, site_addr, muni, addr_zip, geom
       FROM parcels
       WHERE ST_Intersects(ST_GeomFromText('#{point}', 4326), geom);
     SQL
-    sql_result = ActiveRecord::Base.connection.exec_query(apn_query).to_a[0]
+    sql_result = ActiveRecord::Base.connection.exec_query(pinnum_query).to_a[0]
     return if sql_result.blank?
     self.update_columns(address: sql_result['site_addr'],
                         municipal: sql_result['muni'],
                         zip_code: sql_result['addr_zip'],
-                        apn: sql_result['apn'])
+                        pinnum: sql_result['pinnum'])
   end
 
   def update_n_transit
@@ -325,7 +325,7 @@ class Development < ApplicationRecord
   def update_loc_id
     return if !saved_change_to_point?
     loc_id_query = <<~SQL
-      SELECT gid,apn, geom
+      SELECT gid,pinnum, geom
       FROM parcels
       WHERE ST_Intersects(ST_GeomFromText('#{point}', 4326), geom);
     SQL
@@ -333,7 +333,7 @@ class Development < ApplicationRecord
     return if sql_result.blank?
     self.update_columns(
       loc_id: sql_result['gid'],
-      apn: sql_result['apn']      
+      pinnum: sql_result['pinnum']      
     )
     #self.update_columns(loc_id: sql_result['parloc_id'])
     #self.update_columns(apn: sql_result['apn'])
@@ -344,7 +344,7 @@ class Development < ApplicationRecord
     taz_query = <<~SQL
       SELECT taz_number, geometry
       FROM tazs
-      WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326),4269), geometry);
+      WHERE ST_Intersects(ST_GeomFromText('#{point}', 4326), geometry);
     SQL
     sql_result = ActiveRecord::Base.connection.exec_query(taz_query).to_a[0]
     return if sql_result.blank?

@@ -4,7 +4,7 @@ class ImportPlaces < ActiveRecord::Migration[7.0]
       t.string "geoid"
 	  t.string "placens"
 	  t.string "namelsad"
-	  t.geometry "geom", limit: {:srid=>4269, :type=>"multi_polygon"}
+	  t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon"}
       t.index ["geom"], name: "ca_place_geom_idx", using: :gist
     end
     config   = Rails.configuration.database_configuration

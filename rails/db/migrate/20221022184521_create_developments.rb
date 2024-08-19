@@ -78,7 +78,7 @@ class CreateDevelopments < ActiveRecord::Migration[7.0]
       t.boolean :proj_id_present
       t.boolean :traffic_count_data_present
       t.integer :taz
-      t.string :apn
+      t.string :pinnum
       t.boolean :trunc, default: false
       t.string :gluc
       t.string :placetype

@@ -17,19 +17,19 @@ namespace :database do
       SELECT rpa.name as rpa_name, dev.id
       FROM rpas AS rpa
       JOIN developments AS dev
-      ON ST_Intersects(ST_TRANSFORM(dev.point, 4269), rpa.shape);
+      ON ST_Intersects(dev.point, rpa.shape);
     SQL
     county_query = <<~SQL
       SELECT cty.county, dev.id
       FROM counties AS cty
       JOIN developments AS dev
-      ON ST_Intersects(ST_TRANSFORM(dev.point, 4269), cty.shape);
+      ON ST_Intersects(dev.point, cty.shape);
     SQL
     municipality_query = <<~SQL
       SELECT mni.namelsad as municipal, dev.id
       FROM places AS mni
       JOIN developments AS dev
-      ON ST_Intersects(ST_TRANSFORM(dev.point, 4269), mni.geom);
+      ON ST_Intersects(dev.point, mni.geom);
     SQL
     n_transit_query = <<~SQL
       SELECT tsa.srvc_name, dev.id
@@ -44,7 +44,7 @@ namespace :database do
       ON ST_Intersects(dev.point, nhd.shape);
     SQL
     loc_id_query = <<~SQL
-      SELECT pcl.gid as parloc_id, pcl.apn, dev.id
+      SELECT pcl.gid as parloc_id, pcl.pinnum, dev.id
       FROM parcels AS pcl
       JOIN developments AS dev
       ON ST_Intersects(dev.point, pcl.geom);
@@ -53,7 +53,7 @@ namespace :database do
     SELECT taz_number, geometry
     FROM tazs as tz
     JOIN developments as dev
-    ON ST_Intersects(ST_TRANSFORM(dev.point,4269), tz.geometry);
+    ON ST_Intersects(dev.point, tz.geometry);
     SQL
 
     timer = Time.now
@@ -109,8 +109,8 @@ namespace :database do
     loc_id_result = ActiveRecord::Base.connection.exec_query(loc_id_query).to_a
     loc_id_mapping = Hash.new
     loc_id_result.each { |record| loc_id_mapping[record['id']] = record['parloc_id'] }
-    loc_apn_mapping = Hash.new
-    loc_id_result.each { |record| loc_apn_mapping[record['id']] = record['apn'] }
+    loc_pinnum_mapping = Hash.new
+    loc_id_result.each { |record| loc_pinnum_mapping[record['id']] = record['pinnum'] }
     
     puts "Fetched parcel mapping in #{Time.now - timer} seconds"
 
@@ -124,7 +124,7 @@ namespace :database do
           nhood: nhood_mapping[development.id],
           taz:taz_mapping[development.id],
           loc_id: loc_id_mapping[development.id],  
-          apn: loc_apn_mapping[development.id]         
+          pinnum: loc_pinnum_mapping[development.id]         
         )
         print '.'
       end

@@ -4,7 +4,7 @@ class ImportRpas < ActiveRecord::Migration[7.0]
       t.string "rpa_name"
 	  t.string "acronym"
 	  t.string "website"
-	  t.geometry "shape", limit: {:srid=>4269, :type=>"multi_polygon"}
+	  t.geometry "shape", limit: {:srid=>4326, :type=>"multi_polygon"}
       t.index ["shape"], name: "rpa_poly_shape_idx", using: :gist
     end
     config   = Rails.configuration.database_configuration

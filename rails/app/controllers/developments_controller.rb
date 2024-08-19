@@ -115,7 +115,7 @@ class DevelopmentsController < ApplicationController
                   :rptdemp, :commsf, :hotelrms, :total_cost,:rhna,:ab1317,
                   :ret_sqft, :ofcmd_sqft, :indmf_sqft,
                   :whs_sqft, :rnd_sqft, :ei_sqft, :other_sqft, :hotel_sqft, :other_rate, :affordable,
-                  :latitude, :longitude, :parcel_id,:apn, :mixed_use,:mix_descr, :point, :programs, :forty_b, :residential,
+                  :latitude, :longitude, :parcel_id,:pinnum, :mixed_use,:mix_descr, :point, :programs, :forty_b, :residential,
                   :commercial, :municipal, :devlper, :yrcomp_est, :units_1bd, :units_2bd, :units_3bd,
                   :affrd_unit, :aff_u50, :aff_50_80, :aff_80_120, :aff_120p, :headqtrs, :park_type, :sb_type, :publicsqft,
                   :unknownhu, :aff_unknown, :unk_sqft, :flag, :traffic_count_data_present, :proj_id,:proj_id_present,
@@ -134,7 +134,7 @@ class DevelopmentsController < ApplicationController
                                                                        rptdemp commsf hotelrms  total_cost
                                                                        ret_sqft ofcmd_sqft indmf_sqft rhna ab1317
                                                                        whs_sqft rnd_sqft ei_sqft other_sqft hotel_sqft other_rate affordable
-                                                                       latitude longitude parcel_id apn mixed_use mix_descr point programs forty_b residential
+                                                                       latitude longitude parcel_id pinnum mixed_use mix_descr point programs forty_b residential
                                                                        commercial municipal devlper yrcomp_est units_1bd units_2bd units_3bd
                                                                        affrd_unit aff_u50 aff_50_80 aff_80_120 aff_120p headqtrs park_type sb_type publicsqft
                                                                        unknownhu aff_unknown unk_sqft flag proj_id traffic_count_data proj_id_present traffic_count_data_present

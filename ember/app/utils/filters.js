@@ -35,7 +35,7 @@ const defaultDiscrete = {
 const filters = {
 
   // Discrete
-  'apn': { name: 'APN', ...defaultDiscrete },
+  'pinnum': { name: 'PINNUM', ...defaultDiscrete },
   'devlper': { name: 'Developer', ...defaultDiscrete },
   'municipal':  { name: 'Town/City', ...defaultDiscrete },
   'nhood': { name: 'Neighborhood', ...defaultDiscrete },

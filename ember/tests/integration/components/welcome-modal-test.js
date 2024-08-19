@@ -12,6 +12,6 @@ module('Integration | Component | welcome modal', function(hooks) {
 
     await render(hbs`{{welcome-modal}}`);
 
-    assert.dom('*').hasText("Welcome to fbrbuilds! x fbrbuilds is your Metropolitan Planning Organization’s collaborative inventory of past, present and future real estate development projects. This tool provides governments, data analysts, urban planners, community advocates, and real estate developers with comprehensive data for thousands of projects across California. Learn more Continue to fbrbuilds");
+    assert.dom('*').hasText("Welcome to FBRBuilds! x FBRBuilds is your Metropolitan Planning Organization’s collaborative inventory of past, present and future real estate development projects. This tool provides governments, data analysts, urban planners, community advocates, and real estate developers with comprehensive data for thousands of projects across 5 counties in North Carolina, including Buncombe County, Haywood County, Henderson County, Madison County, and Transylvania County. Learn more Continue to fbrbuilds");
   });
 });

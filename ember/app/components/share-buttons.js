@@ -29,7 +29,7 @@ export default class extends Component {
       .join(',')
       .split('&placetype[]=')
       .join(',')
-      .split('&apn[]=')
+      .split('&pinnum[]=')
       .join(',')
       .split('&devlper[]=')
       .join(',')

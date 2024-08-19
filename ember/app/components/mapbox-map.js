@@ -44,9 +44,7 @@ export default class extends Component {
     //let mapStyle = 'mapbox://styles/mapbox/light-v9';
     let mapStyle = 'mapbox://styles/yacwang/clhxyovj800to01rh2gaeb2li';
     if (mapService.get('baseMap') == 'satellite') {
-      //mapStyle = 'mapbox://styles/yacwang/cli9ej8sh00zd01r8hy2q8nau';
-      mapStyle = 'mapbox://styles/yacwang/cl6olfiai000014jqi8s3q5f9';
-      //mapStyle = 'mapbox://styles/ihill/cjin8f3kc0ytj2sr0rxw11a90';
+      mapStyle = 'mapbox://styles/yacwang/clllz6b6r00mh01poeo0v26m1';
     }
     this.mapboxglMap = new mapboxgl.Map({
       container: this.get('element'),
@@ -290,8 +288,8 @@ export default class extends Component {
                     muni: parcel.get('muni')
                       ? parcel.get('muni').toUpperCase()
                       : '',
-                      apn: parcel.get('apn')
-                      ? parcel.get('apn')
+                      pinnum: parcel.get('pinnum')
+                      ? parcel.get('pinnum')
                       : '',
                   },
                   geometry: center.geometry,
@@ -330,10 +328,7 @@ export default class extends Component {
       this.mapboxglMap.setStyle('mapbox://styles/yacwang/clhxyovj800to01rh2gaeb2li');
     } else if (newBaseMap == 'satellite') {
       this.mapboxglMap.setStyle(
-       // 'mapbox://styles/yacwang/cli9ej8sh00zd01r8hy2q8nau'
-       // 'mapbox://styles/yacwang/cl6olfiai000014jqi8s3q5f9'
-        'mapbox://styles/yacwang/clllz6b6r00mh01poeo0v26m1'
-        //'mapbox://styles/ihill/cjin8f3kc0ytj2sr0rxw11a90'
+        'mapbox://styles/yacwang/clllz6b6r00mh01poeo0v26m1'        
       );
     }
   }
@@ -342,17 +337,17 @@ export default class extends Component {
     //const visibility=this.mapboxglMap.getLayoutProperty("parcelsFBRMPO", 'visibility');
     const visibility=mapService.get('parcelTileVisible');
     if (visibility){
-      this.mapboxglMap.setLayoutProperty("parcelsslocog", 'visibility', 'visible'); 
-      this.mapboxglMap.setLayoutProperty("parcelsFBRMPO", 'visibility', 'visible');
-      this.mapboxglMap.setLayoutProperty("parcelssrta", 'visibility', 'visible');
-      this.mapboxglMap.setLayoutProperty("parcelstrpa", 'visibility', 'visible');
-      this.mapboxglMap.setLayoutProperty("parcelsbcag", 'visibility', 'visible');
+      this.mapboxglMap.setLayoutProperty("parcelbuncombe", 'visibility', 'visible'); 
+      this.mapboxglMap.setLayoutProperty("parcelhaywood", 'visibility', 'visible');
+      this.mapboxglMap.setLayoutProperty("parcelhenderson", 'visibility', 'visible');
+      this.mapboxglMap.setLayoutProperty("parcelmadison", 'visibility', 'visible');
+      this.mapboxglMap.setLayoutProperty("parceltransylvania", 'visibility', 'visible');
     }else{
-      this.mapboxglMap.setLayoutProperty("parcelsslocog", 'visibility', 'none'); 
-      this.mapboxglMap.setLayoutProperty("parcelsFBRMPO", 'visibility', 'none');
-      this.mapboxglMap.setLayoutProperty("parcelssrta", 'visibility', 'none');
-      this.mapboxglMap.setLayoutProperty("parcelstrpa", 'visibility', 'none');
-      this.mapboxglMap.setLayoutProperty("parcelsbcag", 'visibility', 'none');
+      this.mapboxglMap.setLayoutProperty("parcelbuncombe", 'visibility', 'none'); 
+      this.mapboxglMap.setLayoutProperty("parcelhaywood", 'visibility', 'none');
+      this.mapboxglMap.setLayoutProperty("parcelhenderson", 'visibility', 'none');
+      this.mapboxglMap.setLayoutProperty("parcelmadison", 'visibility', 'none');
+      this.mapboxglMap.setLayoutProperty("parceltransylvania", 'visibility', 'none');
     }
    
   }
@@ -411,7 +406,7 @@ export default class extends Component {
           },
         },
         layout: {
-          'text-field': '{site_addr},\n{muni},\n{apn}',
+          'text-field': '{site_addr},\n{muni},\n{pinnum}',
           'text-size': 12,
           'text-justify': 'left',
           'text-max-width': 20,
@@ -442,7 +437,7 @@ export default class extends Component {
         color: statusColors[dev.get('status')] || '#888',
         name: dev.get('name'),
         status: dev.get('status'),
-        apn: dev.get('apn'),
+        pinnum: dev.get('pinnum'),
         statComts: dev.get('statComts'),
         yrcompEst: dev.get('yrcompEst'),
         yearCompl: dev.get('yearCompl'),

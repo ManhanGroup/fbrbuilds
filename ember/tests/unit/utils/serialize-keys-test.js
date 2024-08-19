@@ -7,14 +7,14 @@ module('Unit | Utility | serialize keys', function() {
   test('it works', function(assert) {
     const input = {
       'Neighborhood-one': 'nhood-nbhood',
-      'APNtoday': 'apn',
+      'PINNUMtoday': 'pinnum',
       'DeveloperSchmeveloper': 'devlper',
       'Town/City-camelmePlease': 'municipal',
     };
 
     const expectedResult = {
       'neighborhoodOne': 'nhood-nbhood',
-      'aPNtoday': 'apn',
+      'PINNUMtoday': 'pinnum',
       'developerSchmeveloper': 'devlper',
       'town/cityCamelmePlease': 'municipal',
     };

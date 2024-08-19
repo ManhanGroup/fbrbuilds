@@ -42,11 +42,11 @@ module.exports = function(environment) {
   if (environment === 'staging') {
     //ENV.rootURL = '/fbrbuilds/'
     //ENV['host'] = 'https://fbrbuilds-api.herokuapp.com/';
-    ENV['host'] = 'https://fbrbuilds-pi-toggledeve-ltts5x.herokuapp.com/';
+    ENV['host'] = 'https://fbrbuilds-pi-toggledeve-ltts5x.herokuapp.com/https://fbrbuilds-api.herokuapp.com/';
   }
 
   if (environment === 'production') {
-    ENV['host'] = 'https://fbrbuilds-api.herokuapp.com/';
+    ENV['host'] = 'https://fbrbuilds-api-413cb588827e.herokuapp.com/';
   }
 
   if (environment === 'test') {

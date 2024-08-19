@@ -122,7 +122,7 @@ namespace :import do
         proj_id_present: to_bool(row["proj_id_present"]),
         traffic_count_data_present: to_bool(row["traffic_count_data_present"]),
         taz: row["taz"],
-        apn: row["apn"],
+        pinnum: row["pinnum"],
         trunc: row["trunc"],
         gluc: row["gluc"],
         placetype: row["placetype"],
@@ -186,7 +186,7 @@ namespace :import do
     municipality_query = <<~SQL
       SELECT municipal
       FROM
-        (SELECT namelsad as municipal, ST_TRANSFORM(m.geom, 4326) as geom FROM places) municipality,
+        (SELECT namelsad as municipal, m.geom FROM places) municipality,
         (SELECT id, name, point FROM developments) development
         WHERE ST_Intersects(development.point, municipality.geom)
         AND id = #{development.id};
