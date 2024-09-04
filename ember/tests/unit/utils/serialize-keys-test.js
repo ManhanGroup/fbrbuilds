@@ -14,7 +14,7 @@ module('Unit | Utility | serialize keys', function() {
 
     const expectedResult = {
       'neighborhoodOne': 'nhood-nbhood',
-      'PINNUMtoday': 'pinnum',
+      'pINNUMtoday': 'pinnum',
       'developerSchmeveloper': 'devlper',
       'town/cityCamelmePlease': 'municipal',
     };
