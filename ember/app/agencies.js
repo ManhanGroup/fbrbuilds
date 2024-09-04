@@ -10,7 +10,7 @@ const agencies={
     },
     "properties": {
       "id": "0",
-      "logo": "FBRMPO_flat.jpg",
+      "logo": "fbrmpo-logo.png",
       "name": "French Broad River Metropolitan Planning Organization",
       "phoneFormatted": "(828)251-6622",
       "phone": "+18282516622",

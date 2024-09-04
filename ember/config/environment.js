@@ -27,7 +27,7 @@ module.exports = function(environment) {
     },
     MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN,
     admin: {
-      email: 'gschmidt@FBRMPO.org',
+      email: 'ya@manhangroup.com',
     }
   };
 
@@ -42,7 +42,7 @@ module.exports = function(environment) {
   if (environment === 'staging') {
     //ENV.rootURL = '/fbrbuilds/'
     //ENV['host'] = 'https://fbrbuilds-api.herokuapp.com/';
-    ENV['host'] = 'https://fbrbuilds-pi-toggledeve-ltts5x.herokuapp.com/https://fbrbuilds-api.herokuapp.com/';
+    ENV['host'] = 'https://fbrbuilds-pi-toggledeve-ltts5x.herokuapp.com/';
   }
 
   if (environment === 'production') {
