@@ -16,12 +16,7 @@ export default class extends Component {
     const selectedCounty= this.get('selectedCounty');
     if (selectedCounty) {
       let cnty=this.get('store').peekRecord('county', selectedCounty);
-      return cnty.get('places');
-      // return cnty.get('places').then((places) => {
-      //   return places;
-      // }).catch((error) => {
-      //   return null;
-      // });             
+      return cnty.get('places');            
     } else {
       return null;
     }

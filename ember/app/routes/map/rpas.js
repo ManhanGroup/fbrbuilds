@@ -1,12 +1,16 @@
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
 
 export default Route.extend({
-  lstrpas: service(),
 
   model() {
-    const rpas=this.get('lstrpas.lstrpas');
-    return rpas;    
-  }
+    return this.get('store').findAll('rpa').then(rpas => {
+      if (rpas.length === 1) {
+        // Handle the case where there is only one record
+        console.log('Only one user found:', rpas.get('firstObject'));
+      }
+      return rpas;
+    });
+  },
 
-})
+});
+
