@@ -2,7 +2,6 @@ import { copy } from '@ember/object/internals';
 import { get } from '@ember/object';
 import { decamelize } from '@ember/string';
 import { statusOptions } from 'fbrbuilds/utils/status-colors';
-import { glucOptions } from 'fbrbuilds/utils/gluc-dicts';
 import { capitalize } from 'fbrbuilds/helpers/capitalize';
 import Development from 'fbrbuilds/models/development';
 
@@ -47,11 +46,8 @@ const filters = {
   'statComts': { name: 'Status Comments', glossaryKey: 'STATUS_COMMENTS', type: 'string', ...defaultMetric },
   'totalCost': { name: 'Total cost', glossaryKey: 'COST_OF_CONSTRUCTION', type: 'number', ...defaultMetric },
   'placetype': { name: 'Place_Type', glossaryKey: 'PLACE_TYPE', type: 'string', ...defaultMetric },
-  //'gluc': { name: 'gluc', glossaryKey: 'GLUC', type: 'string', ...defaultMetric },
-  'gluc': { name: 'Gluc', glossaryKey: 'GLUC', type: 'string', options: glucOptions, ...defaultMetric }, 
   'parkType': { name: 'Parking type', type: 'string', options: ['garage', 'underground', 'surface', 'other'], ...defaultMetric },
-  'ab1317': { name: 'AB1317', glossaryKey: 'AB1317', type: 'boolean', ...defaultMetric },
-  
+   
   'sbType': { name: 'SB type', type: 'string', options: ['SB6', 'SB8', 'Other'], ...defaultMetric },
   'descr': { name: 'Description', glossaryKey: 'DESCRIPTION', type: 'string', ...defaultMetric },
   'notes': { name: 'NOTES', glossaryKey: 'NOTES', type: 'string', ...defaultMetric },
@@ -69,8 +65,6 @@ const filters = {
   'percomp_45': { name: 'Percent complete by year 2045', glossaryKey: 'PERCOMP45', type: 'number', ...defaultMetric },
   'mixedUse': { name: 'Mixed use', glossaryKey: 'MIXED_USE', type: 'boolean', ...defaultMetric },
   'mixDescr': { name: 'Mixed use description', glossaryKey: 'MIXED_USE_DESCR', type: 'boolean', ...defaultMetric },
-   
-  'rhna': { name: 'Completed in Current RHNA Cycle?', glossaryKey: 'RHNA',  type: 'boolean', ...defaultMetric }, 
   'yearCompl': { name: 'Year complete', glossaryKey: 'YEAR_COMPLETE', type: 'number', ...defaultMetric },
   'yrcompEst': { name: 'Completion year is estimated',  type: 'boolean', ...defaultMetric },
   'prjarea': { name: 'Project area', glossaryKey: 'PROJECT_AREA', type: 'number', unit: 'sqft', ...defaultMetric },
@@ -120,20 +114,7 @@ const filters = {
   
   'headqtrs': { name: 'Company HQ', glossaryKey: 'COMPANY_HEADQUARTERS', type: 'boolean', ...defaultMetric },
   
-  //srta only
   
-  'studunip': {name: 'Enrollment University', glossaryKey: 'STUDENT_ENROLLMENT_UNIVERSITY', type: 'number', ...defaultMetric},
-  'studk12p': {name: 'Enrollment Kindergarten to 12th Grade', glossaryKey: 'STUDENT_ENROLLMENT_KTOHIGH', type: 'number', ...defaultMetric},
-  'empedu': {name: 'Education', glossaryKey: 'EDUCATION_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empfoo': {name: 'Food Service', glossaryKey: 'FOOD_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empgov': {name: 'Government', glossaryKey: 'GOVERNMENT_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empind': {name: 'Industry', glossaryKey: 'INDUSTRY_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empmed': {name: 'Medical Service', glossaryKey: 'MEDICAL_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empofc': {name: 'Office', glossaryKey: 'OFFICE_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empoth': {name: 'Other', glossaryKey: 'OTHER_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empret': {name: 'Retail', glossaryKey: 'RETAIL_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empsvc': {name: 'Service', glossaryKey: 'SERVICE_EMPLOYMENT', type: 'number', ...defaultMetric},
- 
 
 };
 
@@ -146,13 +127,11 @@ const metricGroups = {
         'status',
         'totalCost',
         'yearCompl',
-        'rhna',
         'yrcompEst',
         'rdv',
         'phased',
         'stalled',
         'parkType',
-        'ab1317',
         'projId',
         'projIdPresent',
         'trafficCountData',
@@ -173,9 +152,7 @@ const metricGroups = {
       metrics: [
         'prjarea',
         'asofright',
-        'mixedUse',
-        'gluc',
-        'sbType'
+        'mixedUse'
       ]
     },
   ],
@@ -211,14 +188,6 @@ const metricGroups = {
       ]
     },
   ],
-  'School': [
-    {
-      title: 'Enrollment',
-      metrics: [
-        'studk12p',
-        'studunip',
-      ]
-    }],
   'Commercial': [
     {
       title: 'General',
@@ -238,20 +207,6 @@ const metricGroups = {
         'eiSqft',
         'hotelSqft',
         'otherSqft',
-      ]
-    },
-    {
-      title: 'Employment Makeup',
-      metrics: [
-        'empedu',
-        'empfoo',
-        'empgov',
-        'empind',
-        'empmed',
-        'empofc',
-        'empoth',
-        'empret',
-        'empsvc'
       ]
     },
     {

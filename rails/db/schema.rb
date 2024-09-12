@@ -10,21 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_26_044227) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_12_062625) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
+
+  create_table "cdp", id: false, force: :cascade do |t|
+    t.integer "id"
+    t.string "geoid"
+    t.string "placens"
+    t.string "namelsad"
+    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon"}
+    t.bigint "county_id"
+    t.bigint "rpa_id"
+    t.boolean "ispublic"
+    t.json "geojson"
+  end
 
   create_table "counties", id: :serial, force: :cascade do |t|
     t.string "geoid"
     t.string "countyns"
     t.string "county"
     t.string "namelsad"
-    t.geometry "shape", limit: {:srid=>4269, :type=>"multi_polygon"}
+    t.geometry "shape", limit: {:srid=>4326, :type=>"multi_polygon"}
     t.bigint "rpa_id"
     t.boolean "ispublic", default: true
     t.index ["rpa_id"], name: "index_counties_on_rpa_id"
     t.index ["shape"], name: "counties_polym_shape_idx", using: :gist
+    t.index ["shape"], name: "counties_shape_idx", using: :gist
+    t.index ["shape"], name: "counties_shape_idx1", using: :gist
   end
 
   create_table "developments", force: :cascade do |t|
@@ -119,21 +133,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_26_044227) do
     t.integer "mf2_4"
     t.integer "mf5up"
     t.integer "mobile"
-    t.integer "studk12p"
-    t.integer "studunip"
-    t.integer "empedu"
-    t.integer "empfoo"
-    t.integer "empgov"
-    t.integer "empind"
-    t.integer "empmed"
-    t.integer "empofc"
-    t.integer "empoth"
     t.integer "empret"
-    t.integer "empsvc"
     t.integer "year"
-    t.boolean "school"
-    t.boolean "rhna"
-    t.boolean "ab1317"
     t.boolean "ispublic", default: true, null: false
     t.index ["deleted_at"], name: "index_developments_on_deleted_at"
   end
@@ -186,7 +187,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_26_044227) do
     t.string "geoid"
     t.string "placens"
     t.string "namelsad"
-    t.geometry "geom", limit: {:srid=>4269, :type=>"multi_polygon"}
+    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon"}
     t.bigint "county_id"
     t.bigint "rpa_id"
     t.boolean "ispublic", default: true
@@ -200,14 +201,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_26_044227) do
     t.string "name"
     t.string "acronym"
     t.string "website"
-    t.geometry "shape", limit: {:srid=>4269, :type=>"multi_polygon"}
+    t.geometry "shape", limit: {:srid=>4326, :type=>"multi_polygon"}
     t.boolean "ispublic", default: true
     t.index ["shape"], name: "rpa_poly_shape_idx", using: :gist
   end
 
   create_table "tazs", id: :serial, force: :cascade do |t|
     t.integer "taz_number"
-    t.geometry "geometry", limit: {:srid=>4269, :type=>"multi_polygon"}
+    t.geometry "geometry", limit: {:srid=>4326, :type=>"multi_polygon"}
     t.index ["geometry"], name: "tazs_geom_idx", using: :gist
   end
 

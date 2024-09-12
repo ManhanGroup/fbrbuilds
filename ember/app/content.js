@@ -1,18 +1,3 @@
-import glucDicts from 'fbrbuilds/utils/gluc-dicts';
-let glucDefinition=['GLUC of the Project?',
-      'Select from the drop-down what the current project GLUC type is.' ,
-      'Refer to the density information below for each GLUC type.'
-      ];
-      
-let glucTable = [['GLUC:', 'Density Range']];
-
-for (let key in glucDicts ) {
-  let value = glucDicts[key];
-  glucTable.push([key.toString(), value.toString()]);
-  // Use `key` and `value`
-}
-
-
 const content = {
   GLOSSARY: {
     PINNUM:{
@@ -41,11 +26,6 @@ const content = {
     NOTES: {
       label: 'Additional Notes',
       definition: ['Additional Notes.'],
-    },
-    GLUC: {
-      label: 'GLUC',
-      definition: glucDefinition,
-      table: glucTable,
     },
     STATUS: {
       label: 'Status',
@@ -109,13 +89,6 @@ const content = {
         'If there are multiple types of parking, select one based on where most of the spaces are located and note the breakdowns in the Description.',
       ],
     },
-    RHNA: {
-      label: 'Completed in the current RHNA cycle?',
-      definition: [
-        'Indicator for whether the development will be completed in the current RHNA cycle or not.',
-      ],
-
-    },
     REDEVELOPMENT: {
       label: 'Redevelopment',
       definition: ['Check if this development is known to be reuse of previously developed land.'],
@@ -127,15 +100,7 @@ const content = {
     STALLED: {
       label: 'Stalled',
       definition: ['Check if this development is stalled and not actively moving forward.'],
-    },
-    SBTYPE: {
-      label: 'SB Type',
-      definition: ['Check if this development is SB6 or SB8.'],
-    },
-    AB1317: {
-      label: 'AB1317',
-      definition: ['Indicator for whether AB1317 is applicable or not?'],
-    },
+    },    
     AS_OF_RIGHT: {
       label: 'As of Right',
       definition: ['Check if this development required no special permit or zoning variance.'],
@@ -252,14 +217,6 @@ const content = {
       label: 'Traffic Count URL',
       definition: ['A URL linking to the Caltrans DOT Transportation Impact Assessment Monitoring Report database or another source of data about traffic monitoring/traffic counts.']
     },
-    STUDENT_ENROLLMENT_KTOHIGH: {
-      label: 'Enrollment Kindergarten to 12th Grade',
-      definition: ['Estimated or reported student Enrollment from Kindergarten to 12th Grade for the development dedicated to education uses.']
-    },
-    STUDENT_ENROLLMENT_UNIVERSITY: {
-      label: 'Enrollment University',
-      definition: ['Estimated or reported university student Enrollment for the development dedicated to college education uses.']
-    },
   }, // End of Glossary
 
   OTHER_TERMS: {
@@ -332,42 +289,6 @@ const content = {
         'If the unit types are unknown, enter the number of housing units here.',
       ],
     },
-    EDUCATION_EMPLOYMENT: {
-      label: 'Education',
-      definition: ['Employment of the development dedicated to educational uses.'],
-    },
-    FOOD_EMPLOYMENT: {
-      label: 'Food Service',
-      definition: ['Employment of the development dedicated to food prepartion or services uses.'],
-    },
-    GOVERNMENT_EMPLOYMENT: {
-      label: 'Government',
-      definition: ['Employment of the development dedicated to government uses.'],
-    },
-    INDUSTRY_EMPLOYMENT: {
-      label: 'Industry',
-      definition: ['Employment of the development dedicated to industry uses.'],
-    },
-    MEDICAL_EMPLOYMENT: {
-      label: 'Medical Service',
-      definition: ['Employment of the development dedicated to medical service uses.'],
-    },
-    OFFICE_EMPLOYMENT: {
-      label: 'Office',
-      definition: ['Employment of the development dedicated to office uses.'],
-    },
-    OTHER_EMPLOYMENT: {
-      label: 'Other',
-      definition: ['Employment of the development dedicated to other uses.'],
-    },
-    RETAIL_EMPLOYMENT :{
-      label: 'Retail',
-      definition: ['Employment of the development dedicated to retail uses.'],
-    },
-    SERVICE_EMPLOYMENT: {
-      label: 'Service',
-      definition: ['Employment of the development dedicated to service uses.'],
-   },
   }
 };
 

@@ -13,7 +13,6 @@ export default class extends DS.Model {
   @attr('string') descr;
   @attr('string') notes;
   @attr('string') prjUrl;
-  @attr('string') gluc;
   @attr('string') placetype;
   @attr('string') tagline;
   @attr('string') nhood;
@@ -68,20 +67,7 @@ export default class extends DS.Model {
   @attr('number') affUnknown;
   @attr('number') publicsqft;
   @attr('number') projId;
-  @attr('number') mf24;
-  @attr('number') mf5up;
-  @attr('number') mobile;
-  @attr('number') studk12p;
-  @attr('number') studunip;
-  @attr('number') empedu;
-  @attr('number') empfoo;
-  @attr('number') empgov;
-  @attr('number') empind;
-  @attr('number') empmed;
-  @attr('number') empofc;
-  @attr('number') empoth;
-  @attr('number') empret;
-  @attr('number') empsvc;
+  
 
   @attr('boolean', { default: false }) rdv;
   @attr('boolean', { default: false }) asofright;
@@ -93,8 +79,6 @@ export default class extends DS.Model {
   @attr('boolean', { default: false }) mixedUse;
   @attr('boolean', { default: false }) yrcompEst;
   @attr('boolean', { default: false }) flag;
-  @attr('boolean', { default: false }) ab1317;
-  @attr('boolean', { default: false }) rhna;
   @attr('boolean', { default: true }) ispublic;
 
   @attr('date') createdAt;

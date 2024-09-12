@@ -203,11 +203,7 @@
               </label>
             </div>
 
-            <div class="field">
-              <label>Complete Date within the Current RHNA Cycle?
-                {{input type="checkbox" checked=editing.rhna click=(action checkForUpdated 'rhna')}}
-              </label>
-            </div>
+            
 
             {{#if (gt editing.yearCompl 2024) }}
             <div class="field">
@@ -271,26 +267,6 @@
             </div>
             {{/if}}
 
-            {{#if (eq userAgency 'SLOCOG')}}            
-            <div class="field">
-              <label for="gluc" class="required">
-                {{defined-term key='GLUC'}}
-              </label>
-              <select
-                  id="gluc"
-                  class={{if inValid.gluc 'invalid'}}
-                  name="gluc"
-                  onchange={{action updateGluc}}
-                >
-                {{#unless editing.gluc}}
-                  <option disabled selected>Select Gluc</option>
-                {{/unless}}
-                {{#each filters.gluc.options as |option|}}
-                  <option value={{option}} selected={{if (eq option editing.gluc) 'selected'}}>{{capitalize option}}</option>
-                {{/each}}
-              </select>             
-            </div>
-            {{else}}
             <div class="field">
               <label for="placetype">
                 {{defined-term key='PLACE_TYPE'}}
@@ -301,21 +277,7 @@
                 class=(if inValid.placetype 'invalid')
                 placeholder="Enter Place Type"
                 input=(action checkForUpdated 'placetype')}}
-            </div>
-            {{/if}}
-
-            <div class="field">
-              <label>{{defined-term key="SBTYPE"}}</label>
-              <ul class="multi-check-options">
-                {{#each filters.sbType.options as |option|}}
-                  <li>
-                    {{input type="checkbox" class="field-sbType" name=option checked=(contains option selectedSbTypes) click=(action checkForUpdated 'sbType')}}
-                    {{capitalize option}}
-                  </li>
-                {{/each}}
-              </ul>
-            </div>
-            
+            </div>            
           </div>
 
           <div class="column">
@@ -363,15 +325,7 @@
                   </li>
                 {{/each}}
               </ul>
-            </div>
-
-            {{#if (eq userAgency 'SRTA') }} 
-              <div class="field">
-                <label>AB1317 Applicable?
-                  {{input type="checkbox" checked=editing.ab1317 click=(action checkForUpdated 'ab1317')}}
-                </label>
-              </div>
-            {{/if}}
+            </div>          
             
           </div>
         </div>
@@ -567,8 +521,7 @@
                 </td>
               </tr>
 
-              {{#if (eq userAgency 'SRTA') }} 
-                <tr>
+              <tr>
                   <td>
                     <label>{{defined-term key="MULTI_FAMILY_2TO4"}}</label>
                   </td>
@@ -607,7 +560,6 @@
                     {{/if}}
                   </td>
                 </tr>
-              {{/if}}
 
               <tr>
                 <td>
@@ -839,50 +791,57 @@
           <div class="row">
             <div class="column">
               <div class="field">
-                <label for="publicsqft">
-                  {{defined-term key='PUBLIC_AREA'}}
+                <label for="rptdemp">
+                  {{defined-term key='REPORTED_EMPLOYMENT'}}
                 </label>
                 {{input
-                  id="publicsqft"
-                  class=(if inValid.publicsqft 'invalid')
-                  value=editing.publicsqft
+                  class=(if inValid.rptdemp 'invalid')
+                  value=editing.rptdemp
                   placeholder="Enter here"
-                  input=(action checkForUpdated 'publicsqft')}}
+                  input=(action checkForUpdated 'rptdemp')}}
               </div>
-            </div>           
-           
+            </div>
+
             <div class="column">
               <div class="field">
                 <label for="hotelrms">
                   {{defined-term key='HOTEL_ROOMS'}}
                 </label>
                 {{input
-                  id="hotelrms"
                   class=(if inValid.hotelrms 'invalid')
                   value=editing.hotelrms
                   placeholder="Enter here"
                   input=(action checkForUpdated 'hotelrms')}}
               </div>
+
+              <div class="field">
+                <label for="publicsqft">
+                  {{defined-term key='PUBLIC_AREA'}}
+                </label>
+                {{input
+                  class=(if inValid.publicsqft 'invalid')
+                  value=editing.publicsqft
+                  placeholder="Enter here"
+                  input=(action checkForUpdated 'publicsqft')}}
+              </div>
             </div>
           </div>
-      
 
           <p class="attributes">
             <label>Attributes:</label>
 
             <span>
-              <label>
-                {{defined-term key='COMPANY_HEADQUARTERS'}}              
-                {{input type='checkbox' checked=editing.headqtrs click=(action checkForUpdated 'headqtrs')}}
+              <label for="headqtrs">
+                {{defined-term key='COMPANY_HEADQUARTERS'}}
               </label>
+              {{input type='checkbox' checked=editing.headqtrs click=(action checkForUpdated 'headqtrs')}}
             </span>
-          </p>       
-              
+          </p>
 
           <div class="table-wrapper">
             <div class="table-heading">
               <h3 class="field">
-                <label class="required">
+                <label for="commsf" class="required">
                   {{defined-term key='COMMERCIAL_AREA'}}
                 </label>
               </h3>
@@ -894,7 +853,7 @@
                 {{/if}}
               </span>
             </div>
-          
+
             <table class="commercial-makeup">
               <tr class="table-header">
                 <td>Use Type</td>
@@ -904,7 +863,7 @@
 
               <tr>
                 <td>
-                  <label>
+                  <label for="retSqft">
                     {{defined-term key='RETAIL_AREA'}}
                   </label>
                 </td>
@@ -926,7 +885,7 @@
 
               <tr>
                 <td>
-                  <label>
+                  <label for="ofcmdSqft">
                     {{defined-term key='OFFICE_MEDICAL_AREA'}}
                   </label>
                 </td>
@@ -948,7 +907,7 @@
 
               <tr>
                 <td>
-                  <label>
+                  <label for="indmfSqft">
                     {{defined-term key='INDUSTRIAL_MANUFACTURING_AREA'}}
                   </label>
                 </td>
@@ -970,7 +929,7 @@
 
               <tr>
                 <td>
-                  <label>
+                  <label for="whsSqft">
                     {{defined-term key='WAREHOUSE_SHIPPING_AREA'}}
                   </label>
                 </td>
@@ -992,7 +951,7 @@
 
               <tr>
                 <td>
-                  <label>
+                  <label for="rndSqft">
                     {{defined-term key='RESEARCH_DEVELOPMENT_AREA'}}
                   </label>
                 </td>
@@ -1014,7 +973,7 @@
 
               <tr>
                 <td>
-                  <label>
+                  <label for="eiSqft">
                     {{defined-term key='EDUCATIONAL_INSTITUTIONAL_AREA'}}
                   </label>
                 </td>
@@ -1035,7 +994,7 @@
 
               <tr>
                 <td>
-                  <label>
+                  <label for="hotelSqft">
                     {{defined-term key='HOTEL_ROOM_AREA'}}
                   </label>
                 </td>
@@ -1056,7 +1015,7 @@
 
               <tr>
                 <td>
-                  <label>
+                  <label for="otherSqft">
                     {{defined-term key='OTHER_AREA'}}
                   </label>
                 </td>
@@ -1078,7 +1037,7 @@
 
               <tr>
                 <td>
-                  <label>
+                  <label for="unkSqft">
                     {{defined-term key='UNKNOWN_AREA'}}
                   </label>
                 </td>
@@ -1097,280 +1056,10 @@
                   {{/if}}
                 </td>
               </tr>
-            </table>          
-          </div>
-
-         
-          <div class="table-wrapper">
-            <div class="table-heading">
-              <h3 class="field">
-                <label class="required">
-                  {{defined-term key='REPORTED_EMPLOYMENT'}}
-                </label>
-              </h3>
-              <span>
-                {{#if (and (not-eq editing.rptdemp null) (gte editing.rptdemp 0))}}
-                  <em>{{editing.rptdemp}}</em>
-                {{else}}
-                  <em>Enter the number of employment for each use type below</em>
-                {{/if}}
-              </span>
-            </div>
-
-            <table class="commercial-makeup emp">
-              <tr class="table-header">
-                <td>Use Type</td>
-                <td># of Employment</td>
-                <td>Percentage</td>
-              </tr>
-
-              <tr>
-                <td>
-                  <label>
-                    {{defined-term key='EDUCATION_EMPLOYMENT'}}
-                  </label>
-                </td>
-                <td>
-                  {{input
-                    class=(if inValid.empedu 'invalid')
-                    value=editing.empedu
-                    placeholder='-'
-                    input=(action updateRptdEmp 'empedu')}}
-                </td>
-                <td>
-                  {{#if (gt editing.rptdemp 0)}}
-                    {{round (mult 100 (div editing.empedu editing.rptdemp))}}%
-                  {{else}}
-                    0%
-                  {{/if}}
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <label>
-                    {{defined-term key='FOOD_EMPLOYMENT'}}
-                  </label>
-                </td>
-                <td>
-                  {{input
-                    class=(if inValid.empedu 'invalid')
-                    value=editing.empfoo
-                    placeholder='-'
-                    input=(action updateRptdEmp 'empfoo')}}
-                </td>
-                <td>
-                  {{#if (gt editing.rptdemp 0)}}
-                    {{round (mult 100 (div editing.empfoo editing.rptdemp))}}%
-                  {{else}}
-                    0%
-                  {{/if}}
-                </td>
-              </tr>
-              
-              <tr>
-                <td>
-                  <label>
-                    {{defined-term key='GOVERNMENT_EMPLOYMENT'}}
-                  </label>
-                </td>
-                <td>
-                  {{input
-                    class=(if inValid.empedu 'invalid')
-                    value=editing.empgov
-                    placeholder='-'
-                    input=(action updateRptdEmp 'empgov')}}
-                </td>
-                <td>
-                  {{#if (gt editing.rptdemp 0)}}
-                    {{round (mult 100 (div editing.empgov editing.rptdemp))}}%
-                  {{else}}
-                    0%
-                  {{/if}}
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <label>
-                    {{defined-term key='INDUSTRY_EMPLOYMENT'}}
-                  </label>
-                </td>
-                <td>
-                  {{input
-                    class=(if inValid.empind 'invalid')
-                    value=editing.empind
-                    placeholder='-'
-                    input=(action updateRptdEmp 'empind')}}
-                </td>
-                <td>
-                  {{#if (gt editing.rptdemp 0)}}
-                    {{round (mult 100 (div editing.empind editing.rptdemp))}}%
-                  {{else}}
-                    0%
-                  {{/if}}
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <label>
-                    {{defined-term key='MEDICAL_EMPLOYMENT'}}
-                  </label>
-                </td>
-                <td>
-                  {{input
-                    class=(if inValid.empmed 'invalid')
-                    value=editing.empmed
-                    placeholder='-'
-                    input=(action updateRptdEmp 'empmed')}}
-                </td>
-                <td>
-                  {{#if (gt editing.rptdemp 0)}}
-                    {{round (mult 100 (div editing.empmed editing.rptdemp))}}%
-                  {{else}}
-                    0%
-                  {{/if}}
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <label>
-                    {{defined-term key='OFFICE_EMPLOYMENT'}}
-                  </label>
-                </td>
-                <td>
-                  {{input
-                    class=(if inValid.empofc 'invalid')
-                    value=editing.empofc
-                    placeholder='-'
-                    input=(action updateRptdEmp 'empofc')}}
-                </td>
-                <td>
-                  {{#if (gt editing.rptdemp 0)}}
-                    {{round (mult 100 (div editing.empofc editing.rptdemp))}}%
-                  {{else}}
-                    0%
-                  {{/if}}
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <label>
-                    {{defined-term key='OTHER_EMPLOYMENT'}}
-                  </label>
-                </td>
-                <td>
-                  {{input
-                    class=(if inValid.empoth 'invalid')
-                    value=editing.empoth
-                    placeholder='-'
-                    input=(action updateRptdEmp 'empoth')}}
-                </td>
-                <td>
-                  {{#if (gt editing.rptdemp 0)}}
-                    {{round (mult 100 (div editing.empoth editing.rptdemp))}}%
-                  {{else}}
-                    0%
-                  {{/if}}
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <label>
-                    {{defined-term key='RETAIL_EMPLOYMENT'}}
-                  </label>
-                </td>
-                <td>
-                  {{input
-                    class=(if inValid.empret 'invalid')
-                    value=editing.empret
-                    placeholder='-'
-                    input=(action updateRptdEmp 'empret')}}
-                </td>
-                <td>
-                  {{#if (gt editing.rptdemp 0)}}
-                    {{round (mult 100 (div editing.empret editing.rptdemp))}}%
-                  {{else}}
-                    0%
-                  {{/if}}
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <label>
-                    {{defined-term key='SERVICE_EMPLOYMENT'}}
-                  </label>
-                </td>
-                <td>
-                  {{input
-                    class=(if inValid.empsvc 'invalid')
-                    value=editing.empsvc
-                    placeholder='-'
-                    input=(action updateRptdEmp 'empsvc')}}
-                </td>
-                <td>
-                  {{#if (gt editing.rptdemp 0)}}
-                    {{round (mult 100 (div editing.empsvc editing.rptdemp))}}%
-                  {{else}}
-                    0%
-                  {{/if}}
-                </td>
-              </tr>           
             </table>
           </div>
-        
-
         </article>
-      {{/if}}
-
-      {{#if (eq userAgency 'SRTA') }} 
-        <div class="field">
-          <label for="school">New School?</label>
-          {{input type="checkbox" checked=editing.school click=(action checkForUpdated 'school')}}
-        </div>
-      {{/if}}
-
-      
-       {{#if editing.school}}      
-        <article>
-          <h4>School</h4>        
-          <div class="row">
-            <div class="column">
-              <div class="field">
-                <label for="studk12p">
-                  {{defined-term key='STUDENT_ENROLLMENT_KTOHIGH'}}
-                </label>
-                {{input
-                  id="studk12p"
-                  class=(if inValid.studk12p 'invalid')
-                  value=editing.studk12p
-                  placeholder="Enter here"
-                  input=(action checkForUpdated 'studk12p')}}
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="column">
-              <div class="field">
-                <label for="studunip">
-                  {{defined-term key='STUDENT_ENROLLMENT_UNIVERSITY'}}
-                </label>
-                {{input
-                  id="studuniq"
-                  class=(if inValid.studunip 'invalid')
-                  value=editing.studunip
-                  placeholder="Enter here"
-                  input=(action checkForUpdated 'studunip')}}
-              </div>
-            </div>
-          </div>
-        </article>
-      {{/if}}
+      {{/if}}       
     </div>
   {{/overflow-scroll}}
   <div class="required-note">

@@ -85,9 +85,6 @@ class Edit < ApplicationRecord
         "prj_url": {
           "type": "string"
         },
-        "gluc": {
-          "type": "string"
-        },
         "placetype": {
           "type": "string"
         },
@@ -241,48 +238,6 @@ class Edit < ApplicationRecord
         },
         "mobile":{
           "type": "number"
-        },
-        "school": {
-          "type": "boolean"
-        },
-        "studk12p":{
-          "type": "number"
-        },
-        "studunip":{
-          "type": "number"
-        },
-        "empedu":{
-          "type": "number"
-        },
-        "empfoo":{
-          "type": "number"
-        },
-        "empgov":{
-          "type": "number"
-        },
-        "empind":{
-          "type": "number"
-        },
-        "empmed":{
-          "type": "number"
-        },
-        "empofc":{
-          "type": "number"
-        }, 
-        "empoth":{
-          "type": "number"
-        },
-        "empret":{
-          "type": "number"
-        },
-        "empsvc":{
-          "type": "number"
-        },
-        "rhna":{
-          "type": "boolean"
-        },
-        "ab1317":{
-          "type": "boolean"
         },
         "ispublic":{
           "type": "boolean"

@@ -8,6 +8,7 @@ class Development < ApplicationRecord
   include PgSearch::Model
   include ActiveModel::Dirty
   pg_search_scope :search_by_name_and_location, against: [:name, :municipal, :address, :pinnum], using: { tsearch: { any_word: true } }
+  scope :exclude_before_2020, -> { where.not('your_attribute < ?', 2020) }
   validates :name, :status, :latitude, :longitude, :year_compl, :hu,
             :commsf, :descr, presence: true
   validates_inclusion_of :rdv, :asofright, :clusteros, :phased, :stalled, :mixed_use,

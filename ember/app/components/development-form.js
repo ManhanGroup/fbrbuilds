@@ -64,23 +64,6 @@ export default class extends Component {
       'hotelSqft',      
     ];
 
-    this.srtaEmpFields=[      
-      'empedu',
-      'empfoo',
-      'empgov',
-      'empind',
-      'empmed',
-      'empofc', 
-      'empoth',
-      'empret',
-      'empsvc'
-    ];
-
-    this.srtaSchoolFields=[
-      'studk12p',
-      'studunip',
-    ]
-
     this.allCommercialAreaFields = [
       ...this.knownCommercialFields,
       'unkSqft',
@@ -192,12 +175,6 @@ export default class extends Component {
   @action
   updateStatus() {
     this.handleUpdate('status');
-    this.updateFieldRequirements();
-  }
-
-  @action
-  updateGluc() {
-    this.handleUpdate('gluc');
     this.updateFieldRequirements();
   }
 
@@ -318,10 +295,10 @@ export default class extends Component {
         : calculatedValue;
 
     // Adjust values if nonstandard
-    if (fieldName === 'status'|| fieldName === 'gluc') {
+    if (fieldName === 'status') {
       edited = document.querySelector(`select[name="${fieldName}"]`).value;
     }
-    else if (fieldName === 'parkType' || fieldName === 'sbType') {
+    else if (fieldName === 'parkType') {
       edited = Array.from(document.querySelectorAll(`input.field-${fieldName}`))
                     .filter(x => x.checked)
                     .map(x => x.name);
