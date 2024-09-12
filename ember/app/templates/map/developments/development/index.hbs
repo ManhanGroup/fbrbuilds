@@ -19,7 +19,7 @@
 
   <div class="development-content">
       <div class="development-header">
-        <h1 onclick={{action findPosition}}>{{model.name}}</h1>
+        <h1 onclick={{action findPosition}}>{{if model.name model.name model.fullAddress}}</h1>
         <h2><img src="/assets/images/map-pin.svg" onclick={{action findPosition}}> {{model.fullAddress}}</h2>
 
         {{#if model.prjUrl}}
