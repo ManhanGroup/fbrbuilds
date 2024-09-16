@@ -8,8 +8,8 @@ const manual = {
   'units2bd': 'units_2bd',
   'units3bd': 'units_3bd',
   'aff5080': 'aff_50_80',
-  'aff80120': 'aff_80_120',
-  'aff120p': 'aff_120p',
+  'aff3050': 'aff_30_50',
+  'aff80p': 'aff_80p',
   'mf24': 'mf2_4'
 };
 

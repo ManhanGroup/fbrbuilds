@@ -166,18 +166,6 @@
                 {{/each}}
               </select>
             </div>
-            <div class="field long-form">
-              <label>
-                {{defined-term key='STATUS_COMMENTS'}}
-              </label>
-              <p>
-                {{textarea
-                  value=editing.statComts
-                  placeholder="Enter Status Comments"
-                  input=(action checkForUpdated 'statComts')}}
-              </p>
-            </div>
-
           </div>
         </div>
 
@@ -265,34 +253,9 @@
                 placeholder="Percent complete in 2045"
                 input=(action checkForUpdated 'percomp45')}}
             </div>
-            {{/if}}
+            {{/if}} 
 
-            <div class="field">
-              <label for="placetype">
-                {{defined-term key='PLACE_TYPE'}}
-              </label>
-              {{input
-                id="placetype"
-                value=editing.placetype
-                class=(if inValid.placetype 'invalid')
-                placeholder="Enter Place Type"
-                input=(action checkForUpdated 'placetype')}}
-            </div>            
-          </div>
-
-          <div class="column">
-            <!--div class="field">
-              <label for="onsitepark">
-                {{defined-term key='PARKING_SPACES'}}
-              </label>
-              {{input
-                class=(if inValid.onsitepark 'invalid')
-                value=editing.onsitepark
-                placeholder="Enter here"
-                input=(action checkForUpdated 'onsitepark')}}
-            </div-->
-
-            <div class="field">
+             <div class="field">
               <label for="totalCost">
                 {{defined-term key='COST_OF_CONSTRUCTION'}}
               </label>
@@ -309,14 +272,48 @@
                 {{defined-term key='PROJECT_AREA'}}
               </label>
               {{input
-                id="prjarea"
                 class=(if inValid.prjarea 'invalid')
                 value=editing.prjarea placeholder="Enter here"
                 input=(action checkForUpdated 'prjarea')}}
+            </div>          
+          </div>
+
+         <div class="column">
+            <div class="field">
+              <label for="height">
+                {{defined-term key='HEIGHT'}}
+              </label>
+              {{input
+                class=(if inValid.height 'invalid')
+                value=editing.height
+                placeholder="Enter here"
+                input=(action checkForUpdated 'height')}}
             </div>
 
             <div class="field">
-              <label>Parking Type</label>
+              <label for="stories">
+                {{defined-term key='STORIES'}}
+              </label>
+              {{input
+                class=(if inValid.stories 'invalid')
+                value=editing.stories
+                placeholder="Enter here"
+                input=(action checkForUpdated 'stories')}}
+            </div>
+
+            <div class="field">
+              <label for="onsitepark">
+                {{defined-term key='PARKING_SPACES'}}
+              </label>
+              {{input
+                class=(if inValid.onsitepark 'invalid')
+                value=editing.onsitepark
+                placeholder="Enter here"
+                input=(action checkForUpdated 'onsitepark')}}
+            </div>
+
+            <div class="field">
+              <label for="parkType">Parking Type</label>
               <ul class="multi-check-options">
                 {{#each filters.parkType.options as |option|}}
                   <li>
@@ -325,8 +322,7 @@
                   </li>
                 {{/each}}
               </ul>
-            </div>          
-            
+            </div>
           </div>
         </div>
 
@@ -370,19 +366,6 @@
 
 
         </p>
-        {{#if editing.mixedUse}}
-         <div class="field long-form">
-              <label>
-                {{defined-term key='MIXED_USE_DESCR'}}
-              </label>
-              <p>
-                {{textarea
-                  value=editing.mixDescr
-                  placeholder="Enter Description for Mixed Use"
-                  input=(action checkForUpdated 'mixDescr')}}
-              </p>
-            </div>
-        {{/if}}
       </article>
 
 
@@ -691,17 +674,35 @@
               </tr>
 
               <tr>
-                <td><label>Units &lt;50% AMI</label></td>
+                <td><label>Units &lt;30% AMI</label></td>
                 <td>
                   {{input
-                    class=(if inValid.affU50 'invalid')
-                    value=editing.affU50
+                    class=(if inValid.affU30 'invalid')
+                    value=editing.affU30
                     placeholder='-'
-                    input=(action updateAffrdUnit 'affU50')}}
+                    input=(action updateAffrdUnit 'affU30')}}
                 </td>
                 <td>
                   {{#if (gt editing.affrdUnit 0)}}
-                    {{round (mult 100 (div editing.affU50 editing.affrdUnit))}}%
+                    {{round (mult 100 (div editing.affU30 editing.affrdUnit))}}%
+                  {{else}}
+                    0%
+                  {{/if}}
+                </td>
+              </tr>
+
+              <tr>
+                <td><label>Units 30-50% AMI</label></td>
+                <td>
+                  {{input
+                    class=(if inValid.aff3050 'invalid')
+                    value=editing.aff3050
+                    placeholder='-'
+                    input=(action updateAffrdUnit 'aff3050')}}
+                </td>
+                <td>
+                  {{#if (gt editing.affrdUnit 0)}}
+                    {{round (mult 100 (div editing.aff5080 editing.affrdUnit))}}%
                   {{else}}
                     0%
                   {{/if}}
@@ -727,35 +728,17 @@
               </tr>
 
               <tr>
-                <td><label>Units 80-120% AMI</label></td>
+                <td><label>Above Units 80% AMI</label></td>
                 <td>
                   {{input
-                    class=(if inValid.aff80120 'invalid')
-                    value=editing.aff80120
+                    class=(if inValid.aff80p 'invalid')
+                    value=editing.aff80p
                     placeholder='-'
-                    input=(action updateAffrdUnit 'aff80120')}}
+                    input=(action updateAffrdUnit 'aff80p')}}
                 </td>
                 <td>
                   {{#if (gt editing.affrdUnit 0)}}
-                    {{round (mult 100 (div editing.aff80120 editing.affrdUnit))}}%
-                  {{else}}
-                    0%
-                  {{/if}}
-                </td>
-              </tr>
-
-              <tr>
-                <td><label>Above Units 120% AMI</label></td>
-                <td>
-                  {{input
-                    class=(if inValid.aff120p 'invalid')
-                    value=editing.aff120p
-                    placeholder='-'
-                    input=(action updateAffrdUnit 'aff120p')}}
-                </td>
-                <td>
-                  {{#if (gt editing.affrdUnit 0)}}
-                    {{round (mult 100 (div editing.aff120p editing.affrdUnit))}}%
+                    {{round (mult 100 (div editing.aff80p editing.affrdUnit))}}%
                   {{else}}
                     0%
                   {{/if}}

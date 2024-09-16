@@ -11,10 +11,6 @@ const content = {
       label: 'Project Website',
       definition: ['Enter the project website where updates can be found on the project.'],
     },
-    PLACE_TYPE: {
-      label: 'Place Type',
-      definition: ['Place Type of the Project?'],
-    },
     DEVELOPER: {
       label: 'Developer',
       definition: ['If known, enter the project developer(s) only (not including construction team, architects, etc)'],
@@ -36,12 +32,6 @@ const content = {
         'Select Planning if plans for a development have been submitted, and fill out the remaining fields based on the submitted plan. Projects are still Planning even when they are approved.',
         'Select In Construction once a project has officially breaks ground and begun construction work.',
         'Select Completed once a project has officially topped off and finished construction.',
-      ],
-    },
-    STATUS_COMMENTS: {
-      label: 'Comments on Status',
-      definition: [
-        'Additional comments on development status',
       ],
     },
     YEAR_COMPLETE: {
@@ -81,6 +71,16 @@ const content = {
       label: 'Percent by 2045',
       definition: ['Percent completed by year 2045.'],
     },
+    HEIGHT: {
+      label: 'Height',
+      unitsShort: 'ft',
+      unitsLong: 'Feet',
+      definition: ['Total height of development in feet.'],
+    },
+    STORIES: {
+      label: 'Number of Stories',
+      definition: ['Total number of stories in the development.'],
+    },
     PARKING_SPACES: {
       label: 'Number of Parking Spaces',
       definition: [
@@ -109,11 +109,6 @@ const content = {
       label: 'Mixed Use',
       definition: ['Check if this development is a mixed use development (both residential and commercial on same site).'],
     },
-    MIXED_USE_DESCR: {
-      label: 'Mixed Use Description',
-      definition: ['Detailed description on mixed use.'],
-    },
-
     GROUP_QUARTERS_POPULATION: {
       label: 'Group Quarters Population',
       definition: ['Input estimated new beds (the total new population) in group quarters (dorms, nursing homes, military barracks, etc).'],
@@ -168,8 +163,8 @@ const content = {
     AFFORDABLE_UNITS: {
       label: 'Affordable Units',
       definition: [
-        'If the affordability restrictions are known for the affordable units of a project, input into the field that has the range the restrictions fall under and input 0 into the other fields. Ie., If a project with 100 units has 30 designated affordable units where 20 are restricted for households earning up to 50% AMI and 10 for those earning up to 80% AMI, input 20 into Units <50% AMI and 10 into Units 50-80% AMI and 0 for the rest. If you know there are 30 units that are designated affordable but dont known the AMI restrictions, input 0 into all fields and 30 into Unknown.',
-        'If there are restrictions that dont fall neatly into the ranges, ie., if units are designated affordable between 30-60% AMI, input the units into the <50% AMI range and make sure to include the specific AMI in the Descriptions.',
+        'If the affordability restrictions are known for the affordable units of a project, input into the field that has the range the restrictions fall under and input 0 into the other fields. Ie., If a project with 100 units has 30 designated affordable units where 15 are restricted for households earning up to 50% AMI and 15 for those earning up to 80% AMI, input 15 into Units 30-50% AMI and 15 into Units 50-80% AMI and 0 for the rest. If you know there are 30 units that are designated affordable but dont known the AMI restrictions, input 0 into all fields and 30 into Unknown.',
+        'If there are restrictions that dont fall neatly into the ranges, ie., if units are designated affordable between 30-60% AMI, input the units into the 30-50% AMI range and make sure to include the specific AMI in the Descriptions.',
       ],
     },
     ESTIMATED_AND_REPORTED_EMPLOYMENT: {

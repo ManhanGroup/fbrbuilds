@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_12_062625) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_12_074650) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -98,10 +98,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_12_062625) do
     t.integer "units_3bd"
     t.integer "unknownhu"
     t.integer "affrd_unit"
-    t.integer "aff_u50"
+    t.integer "aff_u30"
     t.integer "aff_50_80"
-    t.integer "aff_80_120"
-    t.integer "aff_120p"
+    t.integer "aff_30_50"
+    t.integer "aff_80p"
     t.integer "aff_unknown"
     t.boolean "headqtrs"
     t.string "park_type"
@@ -121,21 +121,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_12_062625) do
     t.integer "taz"
     t.string "pinnum"
     t.boolean "trunc", default: false
-    t.string "gluc"
-    t.string "placetype"
     t.integer "proj_id"
-    t.string "stat_comts"
-    t.string "mix_descr"
-    t.string "sb_type"
     t.string "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "mf2_4"
     t.integer "mf5up"
     t.integer "mobile"
-    t.integer "empret"
     t.integer "year"
     t.boolean "ispublic", default: true, null: false
+    t.string "d_n_trnsit"
+    t.integer "height"
+    t.integer "stories"
     t.index ["deleted_at"], name: "index_developments_on_deleted_at"
   end
 

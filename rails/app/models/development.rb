@@ -21,10 +21,10 @@ class Development < ApplicationRecord
     groundbroken.validates :singfamhu
     groundbroken.validates :multifam
     groundbroken.validates :affrd_unit
-    groundbroken.validates :aff_u50
+    groundbroken.validates :aff_u30
     groundbroken.validates :aff_50_80
-    groundbroken.validates :aff_80_120
-    groundbroken.validates :aff_120p
+    groundbroken.validates :aff_30_50
+    groundbroken.validates :aff_80p
     groundbroken.validates :gqpop
     groundbroken.validates :ret_sqft
     groundbroken.validates :ofcmd_sqft

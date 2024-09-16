@@ -109,15 +109,16 @@ class DevelopmentsController < ApplicationController
   end
 
   def filtered_params
-    params.permit(:user_id, :rdv, :asofright, :ovr55, :clusteros, :phased, :stalled, :name, :status,:stat_comts,
-                  :descr,:notes, :prj_url, :address, :state, :zip_code, :percomp_25,:percomp_30,:percomp_35,:percomp_40,
-                  :percomp_45, :year_compl, :prjarea, :placetype, :singfamhu, :multifam,  :hu, :gqpop,
+    params.permit(:user_id, :rdv, :asofright, :ovr55, :clusteros, :phased, :stalled, :name, :status,
+                  :descr,:prj_url, :address, :state, :zip_code,:height, :stories, 
+                  :percomp_25,:percomp_30,:percomp_35,:percomp_40,
+                  :percomp_45, :year_compl, :prjarea, :singfamhu, :multifam,  :hu, :gqpop,
                   :rptdemp, :commsf, :hotelrms, :total_cost,
                   :ret_sqft, :ofcmd_sqft, :indmf_sqft,
                   :whs_sqft, :rnd_sqft, :ei_sqft, :other_sqft, :hotel_sqft, :other_rate, :affordable,
-                  :latitude, :longitude, :parcel_id,:pinnum, :mixed_use,:mix_descr, :point, :programs, :forty_b, :residential,
+                  :latitude, :longitude, :parcel_id,:pinnum, :mixed_use, :point, :programs, :forty_b, :residential,
                   :commercial, :municipal, :devlper, :yrcomp_est, :units_1bd, :units_2bd, :units_3bd,
-                  :affrd_unit, :aff_u50, :aff_50_80, :aff_80_120, :aff_120p, :headqtrs, :park_type, :publicsqft,
+                  :affrd_unit, :aff_u30, :aff_30_50, :aff_50_80,  :aff_80p, :headqtrs, :park_type, :publicsqft,
                   :unknownhu, :aff_unknown, :unk_sqft, :flag, :traffic_count_data_present, :proj_id,:proj_id_present,
                   :traffic_count_data, :mf2_4,:mf5up,:mobile)
   end
@@ -127,15 +128,16 @@ class DevelopmentsController < ApplicationController
     respond_to do |format|
       format.jsonapi do
         ActiveModelSerializers::Deserialization.jsonapi_parse(params,
-                                                              only: %i[user_id rdv asofright ovr55 clusteros phased stalled name status stat_comts
-                                                                       descr notes prj_url address state zip_code percomp_25 percomp_30 percomp_35
-                                                                       percomp_40 percomp_45 year_compl prjarea placetype singfamhu multifam hu gqpop
+                                                              only: %i[user_id rdv asofright ovr55 clusteros phased stalled name status
+                                                                       descr prj_url address state zip_code  height
+                                                                       stories percomp_25 percomp_30 percomp_35
+                                                                       percomp_40 percomp_45 year_compl prjarea singfamhu multifam hu gqpop
                                                                        rptdemp commsf hotelrms  total_cost
                                                                        ret_sqft ofcmd_sqft indmf_sqft
                                                                        whs_sqft rnd_sqft ei_sqft other_sqft hotel_sqft other_rate affordable
-                                                                       latitude longitude parcel_id pinnum mixed_use mix_descr point programs forty_b residential
+                                                                       latitude longitude parcel_id pinnum mixed_use point programs forty_b residential
                                                                        commercial municipal devlper yrcomp_est units_1bd units_2bd units_3bd
-                                                                       affrd_unit aff_u50 aff_50_80 aff_80_120 aff_120p headqtrs park_type sb_type publicsqft
+                                                                       affrd_unit aff_u30 aff_50_80 aff_30_50 aff_8op headqtrs park_type publicsqft
                                                                        unknownhu aff_unknown unk_sqft flag proj_id traffic_count_data proj_id_present traffic_count_data_present
                                                                        mf2_4 mf5up mobile ispublic])
       end

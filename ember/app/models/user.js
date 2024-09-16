@@ -42,7 +42,7 @@ export default class extends DS.Model {
     } else if(email.endsWith('manhangroup.com') || agency==='consulting'){
       return 'Consulting Staff';
     }  else{
-      return null;
+      return fullName;
     }
 
   }

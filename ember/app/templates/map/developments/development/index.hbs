@@ -112,10 +112,7 @@
                     {{capitalize model.status}}
                   </span>
                 </div>
-                <div class="field long-form">
-                <label for="statComts">{{defined-term key="STATUS_COMMENTS"}}</label>
-                <p>{{model.statComts}}</p>
-                </div>
+     
 
               </div>
             </div>
@@ -190,17 +187,6 @@
                   </div>
                 {{/if}}
 
-                
-              </div>
-
-              <div class="column">
-                {{#if model.placetype}}
-                  <div class="field">
-                  <label for="placetype">{{defined-term key="PLACE_TYPE"}}</label>
-                  <span>{{model.placetype}}</span>
-                  </div>
-                {{/if}}
-
                 <div class="field">
                   <label for="totalCost">
                     {{defined-term key="COST_OF_CONSTRUCTION" labelOverride="Cost"}}
@@ -221,9 +207,33 @@
                   {{else}}
                     <span class="unknown">Unknown</span>
                   {{/if}}
-                </div>                
+                </div>                 
+              </div>
 
-                <!--div class="field">
+              <div class="column">
+                <div class="field">
+                  <label for="height">
+                    {{defined-term key="HEIGHT"}}
+                  </label>
+                  {{#if model.height}}
+                    {{number-format model.height decimals=0}} ft.
+                  {{else}}
+                    <span class="unknown">Unknown</span>
+                  {{/if}}
+                </div>
+
+                <div class="field">
+                  <label for="stories">
+                    {{defined-term key="STORIES"}}
+                  </label>
+                  {{#if model.stories}}
+                    {{model.stories}}
+                  {{else}}
+                    <span class="unknown">Unknown</span>
+                  {{/if}}
+                </div>
+
+                <div class="field">
                   <label for="onsitepark">
                     {{defined-term key="PARKING_SPACES"}}
                   </label>
@@ -232,14 +242,16 @@
                   {{else}}
                     <span class="unknown">Unknown</span>
                   {{/if}}
-                </div-->
+                </div>
 
-                {{#if parkTypes}}
-                  <div class="field">
-                  <label for="parkType">Parking Type</label>                 
-                    {{parkTypes}}                  
-                   </div>
-                {{/if}}                
+                <div class="field">
+                  <label for="parkType">Parking Type</label>
+                  {{#if parkTypes}}
+                    {{parkTypes}}
+                  {{else}}
+                    <span class="unknown">Unknown</span>
+                  {{/if}}
+                </div>
               </div>
             </div>
 
@@ -416,35 +428,35 @@
                     <td>Percentage</td>
                   </tr>
 
-                  {{#if model.affU50}}
+                  {{#if model.affU30}}
                     <tr>
-                      <td>Units &lt;50% AMI</td>
-                      <td>{{number-format model.affU50 decimals=0}}</td>
-                      <td>{{round (mult 100 (div model.affU50 model.affrdUnit))}}%</td>
+                      <td>Units &lt;30% AMI</td>
+                      <td>{{number-format model.affU30 decimals=0}}</td>
+                      <td>{{round (mult 100 (div model.affU30 model.affrdUnit))}}%</td>
                     </tr>
                   {{/if}}
 
-                  {{#if model.affU5050}}
+                  {{#if model.aff3050}}
+                    <tr>
+                      <td>Units 30-50% AMI</td>
+                      <td>{{number-format model.aff3050 decimals=0}}</td>
+                      <td>{{round (mult 100 (div model.aff3050 model.affrdUnit))}}%</td>
+                    </tr>
+                  {{/if}}
+
+                  {{#if model.aff5080}}
                     <tr>
                       <td>Units 50-80% AMI</td>
-                      <td>{{number-format model.affU5050 decimals=0}}</td>
-                      <td>{{round (mult 100 (div model.affU5050 model.affrdUnit))}}%</td>
+                      <td>{{number-format model.aff5080 decimals=0}}</td>
+                      <td>{{round (mult 100 (div model.aff5080 model.affrdUnit))}}%</td>
                     </tr>
                   {{/if}}
 
-                  {{#if model.affU5080}}
+                  {{#if model.aff80p}}
                     <tr>
-                      <td>Units 80-120% AMI</td>
-                      <td>{{number-format model.affU5080 decimals=0}}</td>
-                      <td>{{round (mult 100 (div model.affU5080 model.affrdUnit))}}%</td>
-                    </tr>
-                  {{/if}}
-
-                  {{#if model.affU80p}}
-                    <tr>
-                      <td>Above Units 120% AMI</td>
-                      <td>{{number-format model.affU80p decimals=0}}</td>
-                      <td>{{round (mult 100 (div model.affU80p model.affrdUnit))}}%</td>
+                      <td>Above Units 80% AMI</td>
+                      <td>{{number-format model.aff80p decimals=0}}</td>
+                      <td>{{round (mult 100 (div model.aff80p model.affrdUnit))}}%</td>
                     </tr>
                   {{/if}}
                 </table>
@@ -576,15 +588,6 @@
                 </table>
               {{/if}}
             </div>
-          </article>
-          <article>
-            {{#if model.mixedUse}}
-              <div class="field long-form">
-                <label for="mixDescr">{{defined-term key="MIXED_USE_DESCR"}}</label>
-                <p>{{model.mixDescr}}</p>
-              </div>
-            {{/if}}
-            
           </article>
         </div>
       </div>

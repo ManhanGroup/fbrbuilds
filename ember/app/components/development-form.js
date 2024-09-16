@@ -21,13 +21,13 @@ export default class extends Component {
     this.fulfilled = false;
 
     this.selectedParkTypes = (this.editing.parkType || '').split(',').filter(x => x);
-    this.selectedSbTypes = (this.editing.sbType || '').split(',').filter(x => x);
+
 
     this.knownAffordableFields = [
-      'affU50',
+      'affU30',
+      'aff3050',
       'aff5080',
-      'aff80120',
-      'aff120p',
+      'aff80p',
       'affUnknown'
     ];
 

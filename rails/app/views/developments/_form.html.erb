@@ -56,10 +56,6 @@
     <%= form.text_field :status, id: :development_status %>
   </div>
 
-  <div class="field">
-    <%= form.label :status_comments %>
-    <%= form.text_area :desc, id: :development_stat_comts %>
-  </div>
 
   <div class="field">
     <%= form.label :desc %>
@@ -95,6 +91,17 @@
     <%= form.label :zip_code %>
     <%= form.text_field :zip_code, id: :development_zip_code %>
   </div>
+
+   <div class="field">
+    <%= form.label :height %>
+    <%= form.number_field :height, id: :development_height %>
+  </div>
+
+  <div class="field">
+    <%= form.label :stories %>
+    <%= form.number_field :stories, id: :development_stories %>
+  </div>
+
 
   <div class="field">
     <%= form.label :percomp_25 %>
@@ -259,12 +266,6 @@
   <div class="field">
     <%= form.label :mixed_use %>
     <%= form.check_box :mixed_use, id: :development_mixed_use %>
-  </div>
-
-
-  <div class="field">
-    <%= form.label :mixed_use_descr %>
-    <%= form.text_area :desc, id: :development_mix_descr %>
   </div>
 
   <div class="field">

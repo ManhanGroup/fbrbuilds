@@ -28,6 +28,6 @@ module('Integration | Component | metric filter subpanel', function(hooks) {
         activeFilters=activeFilters
     }}`);
 
-    assert.dom('*').hasText("Units Total housing units > = < Single-family units > = < Multifamily units > = < Studio/1 bedroom units > = < 2 Bedroom units > = < 3 Bedroom units > = < Medium Density Multi-family > = < High Density Multi-family > = < Affordability Affordable units > = < Units <50% AMI > = < Units 50-80% AMI > = < Units 80-120% AMI > = < Above Units 120% AMI > = < Other Group quarters population > = < Age restricted");
+    assert.dom('*').hasText("Units Total housing units > = < Single-family units > = < Multifamily units > = < Studio/1 bedroom units > = < 2 Bedroom units > = < 3 Bedroom units > = < Medium Density Multi-family > = < High Density Multi-family > = < Affordability Affordable units > = < Units <30% AMI > = < Units 30-50% AMI > = < Units 50-80% AMI > = < Above Units 80% AMI > = < Other Group quarters population > = < Age restricted");
   });
 });
