@@ -30,6 +30,6 @@ module('Integration | Component | filter panel', function(hooks) {
       toggleFilters=(action toggleFilters)
     }}`);
 
-    assert.dom('*').hasText("Filters Close Town/City Neighborhood PINNUM Developer Key Info Residential School Commercial 0");
+    assert.dom('*').hasText("Filters Close Town/City Neighborhood PINNUM Developer Key Info Residential Commercial 0");
   });
 });
