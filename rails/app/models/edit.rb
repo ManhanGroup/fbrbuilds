@@ -237,6 +237,9 @@ class Edit < ApplicationRecord
         },
         "ispublic":{
           "type": "boolean"
+        },
+        "d_n_trnsit": {
+          "type": "number"
         }
       }
     }

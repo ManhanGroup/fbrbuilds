@@ -16,7 +16,7 @@ class FullDevelopmentSerializer
     :units_1bd, :units_2bd, :units_3bd, :affrd_unit,:aff_u30,:aff_30_50, :aff_50_80,
     :aff_80p, :headqtrs, :park_type,:publicsqft, :unknownhu,
     :unk_sqft, :aff_unknown, :updated_at, :flag, :proj_id, :traffic_count_data,
-    :mf2_4, :mf5up, :mobile, :ispublic].each { |attr| attribute attr }
+    :mf2_4, :mf5up, :mobile, :ispublic, :d_n_trnsit].each { |attr| attribute attr }
 
     
   attribute :latitude do |object|
