@@ -19,10 +19,6 @@ const content = {
       label: 'Description',
       definition: ['Note basic background, type of development, interesting facts, and other items not covered by the other fields.'],
     },
-    NOTES: {
-      label: 'Additional Notes',
-      definition: ['Additional Notes.'],
-    },
     STATUS: {
       label: 'Status',
       definition: [
@@ -152,12 +148,6 @@ const content = {
       label: 'Mobile Home',
       definition: [
         'Mobile home.',
-      ],
-    },
-    LARGE_MULTI_FAMILY: {
-      label: 'Large Multi-family',
-      definition: [
-        'Structures with 6 or more units.',
       ],
     },
     AFFORDABLE_UNITS: {

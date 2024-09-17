@@ -32,9 +32,9 @@ export default class extends DS.Model {
     if(email.endsWith('landofsky.org') || agency==='FBRMPO' ){
       return 'FBRMPO Staff';
     } else if(email.endsWith('buncombecounty.org') || agency==='Buncombe'){
-      return 'STransylvania County Staff';
+      return 'Buncombe County Staff';
     }else if(email.endsWith('haywoodcounty.org') || agency==='Haywood'){
-      return 'Transylvania County Staff';
+      return 'Haywood County Staff';
     }else if(email.endsWith('madisoncounty.org') || agency==='Madison'){
       return 'Madison County Staff';
     }else if(email.endsWith('transylvaniacounty.org') || agency==='Transylvania'){
@@ -54,9 +54,9 @@ export default class extends DS.Model {
     if(email.endsWith('landofsky.org') || agency==='FBRMPO' ){
       return 'FBRMPO MPO';
     } else if(email.endsWith('buncombecounty.org') || agency==='Buncombe'){
-      return 'STransylvania County';
+      return 'Buncombec County';
     }else if(email.endsWith('haywoodcounty.org') || agency==='Haywood'){
-      return 'Transylvania County';
+      return 'Haywood County';
     }else if(email.endsWith('madisoncounty.org') || agency==='Madison'){
       return 'Madison County';
     }else if(email.endsWith('transylvaniacounty.org') || agency==='Transylvania'){
