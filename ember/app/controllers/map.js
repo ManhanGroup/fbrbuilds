@@ -12,7 +12,7 @@ export default class extends Controller {
 
   @service map
   @service currentUser
-  @service lstrpas
+  @service lstcntys
   @alias('map.baseMap') baseMap
   @alias('map.currentZoom') currentZoom
   @alias('map.focusCityCoords') focusCityCoords

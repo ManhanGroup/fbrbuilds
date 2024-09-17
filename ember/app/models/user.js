@@ -31,15 +31,17 @@ export default class extends DS.Model {
     const { fullName, email, agency } = this.getProperties('fullName', 'email', 'agency');
     if(email.endsWith('landofsky.org') || agency==='FBRMPO' ){
       return 'FBRMPO Staff';
-    } else if(email.endsWith('slocog.org') || agency==='SLOCOG'){
-      return 'SLOCOG Staff';
-    } else if(email.endsWith('srta.org') || agency==='SRTA'){
-      return 'SRTA Staff';
-    }else if(email.endsWith('trpa.org') || agency==='TRPA'){
-      return 'TRPA Staff';
-    }else if(email.endsWith('bcag.org') || agency==='BCAG'){
-      return 'BCAG Staff';
-    } else {
+    } else if(email.endsWith('buncombecounty.org') || agency==='Buncombe'){
+      return 'Buncombe County Staff';
+    }else if(email.endsWith('haywoodcounty.org') || agency==='Haywood'){
+      return 'Haywood County Staff';
+    }else if(email.endsWith('madisoncounty.org') || agency==='Madison'){
+      return 'Madison County Staff';
+    }else if(email.endsWith('transylvaniacounty.org') || agency==='Transylvania'){
+      return 'Transylvania County Staff';
+    } else if(email.endsWith('manhangroup.com') || agency==='consulting'){
+      return 'Consulting Staff';
+    }  else{
       return fullName;
     }
 
@@ -50,18 +52,21 @@ export default class extends DS.Model {
     const {agency, email } = this.getProperties('agency', 'email');
    
     if(email.endsWith('landofsky.org') || agency==='FBRMPO' ){
-      return 'FBRMPO';
-    } else if(email.endsWith('slocog.org') || agency==='SLOCOG'){
-      return 'SLOCOG';
-    }else if(email.endsWith('srta.org') || agency==='SRTA'){
-      return 'SRTA';
-    }else if(email.endsWith('trpa.org') || agency==='TRPA'){
-      return 'TRPA';
-    }else if(email.endsWith('bcag.org') || agency==='BCAG'){
-      return 'BCAG';
-    } else{
+      return 'FBRMPO MPO';
+    } else if(email.endsWith('buncombecounty.org') || agency==='Buncombe'){
+      return 'Buncombec County';
+    }else if(email.endsWith('haywoodcounty.org') || agency==='Haywood'){
+      return 'Haywood County';
+    }else if(email.endsWith('madisoncounty.org') || agency==='Madison'){
+      return 'Madison County';
+    }else if(email.endsWith('transylvaniacounty.org') || agency==='Transylvania'){
+      return 'Transylvania County';
+    } else if(email.endsWith('manhangroup.com') || agency==='consulting'){
+      return 'Consulting';
+    }  else{
       return null;
     }
   }
+
 
 }

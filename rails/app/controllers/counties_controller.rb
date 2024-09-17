@@ -4,11 +4,11 @@ class CountiesController < ApplicationController
     if params[:id]
       @county = County.find(params[:id])
     else
-      @counties = County.select('id,geoid, county, namelsad, ispublic').where("rpa_id in (1,2,12,14,18)")
+      @counties = County.select('id,geoid, county, namelsad, ispublic').order(:namelsad)
     end
     respond_to do |format|
-      format.jsonapi { render jsonapi: @county }
-      format.all { render json: @counties}
+      format.jsonapi { render jsonapi: @counties ,  status: :ok }
+      format.all { render json: @counties,  status: :ok }
     end
   end
 
@@ -26,7 +26,7 @@ class CountiesController < ApplicationController
     
     #find all places inside a county
     #Place.where(:county_id => county_params[:id]).update_all(:ispublic => county_params[:ispublic])
-    # Find all development records by RPA name
+    # Find all development records by County name
     @developments = Development.where(county: county_params[:county], municipal: [nil, ''])
 
     # Update the column with the new value for all records

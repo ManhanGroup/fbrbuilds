@@ -9,12 +9,12 @@ export default class extends Service {
   constructor() {
     super();
 
-    this.lstrpas=null;
+    this.lstcntys=null;
 
     this.get('store')
-      .findAll('rpa', { include: 'counties' })
+      .findAll('county', { include: 'places' })
       .then((results) => {
-      this.set('lstrpas', results);        
+      this.set('lstcntys', results);        
     });
     
     

@@ -1,18 +1,3 @@
-import glucDicts from 'fbrbuilds/utils/gluc-dicts';
-let glucDefinition=['GLUC of the Project?',
-      'Select from the drop-down what the current project GLUC type is.' ,
-      'Refer to the density information below for each GLUC type.'
-      ];
-      
-let glucTable = [['GLUC:', 'Density Range']];
-
-for (let key in glucDicts ) {
-  let value = glucDicts[key];
-  glucTable.push([key.toString(), value.toString()]);
-  // Use `key` and `value`
-}
-
-
 const content = {
   GLOSSARY: {
     PINNUM:{
@@ -26,10 +11,6 @@ const content = {
       label: 'Project Website',
       definition: ['Enter the project website where updates can be found on the project.'],
     },
-    PLACE_TYPE: {
-      label: 'Place Type',
-      definition: ['Place Type of the Project?'],
-    },
     DEVELOPER: {
       label: 'Developer',
       definition: ['If known, enter the project developer(s) only (not including construction team, architects, etc)'],
@@ -37,15 +18,6 @@ const content = {
     DESCRIPTION: {
       label: 'Description',
       definition: ['Note basic background, type of development, interesting facts, and other items not covered by the other fields.'],
-    },
-    NOTES: {
-      label: 'Additional Notes',
-      definition: ['Additional Notes.'],
-    },
-    GLUC: {
-      label: 'GLUC',
-      definition: glucDefinition,
-      table: glucTable,
     },
     STATUS: {
       label: 'Status',
@@ -56,12 +28,6 @@ const content = {
         'Select Planning if plans for a development have been submitted, and fill out the remaining fields based on the submitted plan. Projects are still Planning even when they are approved.',
         'Select In Construction once a project has officially breaks ground and begun construction work.',
         'Select Completed once a project has officially topped off and finished construction.',
-      ],
-    },
-    STATUS_COMMENTS: {
-      label: 'Comments on Status',
-      definition: [
-        'Additional comments on development status',
       ],
     },
     YEAR_COMPLETE: {
@@ -101,6 +67,16 @@ const content = {
       label: 'Percent by 2045',
       definition: ['Percent completed by year 2045.'],
     },
+    HEIGHT: {
+      label: 'Height',
+      unitsShort: 'ft',
+      unitsLong: 'Feet',
+      definition: ['Total height of development in feet.'],
+    },
+    STORIES: {
+      label: 'Number of Stories',
+      definition: ['Total number of stories in the development.'],
+    },
     PARKING_SPACES: {
       label: 'Number of Parking Spaces',
       definition: [
@@ -108,13 +84,6 @@ const content = {
         'If parking spaces are entered, you will be asked to designate what type of parking the spaces are in. Select Garage if the spaces are in an enclosed garage on site, Underground if the spaces are located underneath (below grade) the development, or Surface if they are located on a surface lot (at grade).',
         'If there are multiple types of parking, select one based on where most of the spaces are located and note the breakdowns in the Description.',
       ],
-    },
-    RHNA: {
-      label: 'Completed in the current RHNA cycle?',
-      definition: [
-        'Indicator for whether the development will be completed in the current RHNA cycle or not.',
-      ],
-
     },
     REDEVELOPMENT: {
       label: 'Redevelopment',
@@ -127,15 +96,7 @@ const content = {
     STALLED: {
       label: 'Stalled',
       definition: ['Check if this development is stalled and not actively moving forward.'],
-    },
-    SBTYPE: {
-      label: 'SB Type',
-      definition: ['Check if this development is SB6 or SB8.'],
-    },
-    AB1317: {
-      label: 'AB1317',
-      definition: ['Indicator for whether AB1317 is applicable or not?'],
-    },
+    },    
     AS_OF_RIGHT: {
       label: 'As of Right',
       definition: ['Check if this development required no special permit or zoning variance.'],
@@ -144,11 +105,6 @@ const content = {
       label: 'Mixed Use',
       definition: ['Check if this development is a mixed use development (both residential and commercial on same site).'],
     },
-    MIXED_USE_DESCR: {
-      label: 'Mixed Use Description',
-      definition: ['Detailed description on mixed use.'],
-    },
-
     GROUP_QUARTERS_POPULATION: {
       label: 'Group Quarters Population',
       definition: ['Input estimated new beds (the total new population) in group quarters (dorms, nursing homes, military barracks, etc).'],
@@ -194,17 +150,11 @@ const content = {
         'Mobile home.',
       ],
     },
-    LARGE_MULTI_FAMILY: {
-      label: 'Large Multi-family',
-      definition: [
-        'Structures with 6 or more units.',
-      ],
-    },
     AFFORDABLE_UNITS: {
       label: 'Affordable Units',
       definition: [
-        'If the affordability restrictions are known for the affordable units of a project, input into the field that has the range the restrictions fall under and input 0 into the other fields. Ie., If a project with 100 units has 30 designated affordable units where 20 are restricted for households earning up to 50% AMI and 10 for those earning up to 80% AMI, input 20 into Units <50% AMI and 10 into Units 50-80% AMI and 0 for the rest. If you know there are 30 units that are designated affordable but dont known the AMI restrictions, input 0 into all fields and 30 into Unknown.',
-        'If there are restrictions that dont fall neatly into the ranges, ie., if units are designated affordable between 30-60% AMI, input the units into the <50% AMI range and make sure to include the specific AMI in the Descriptions.',
+        'If the affordability restrictions are known for the affordable units of a project, input into the field that has the range the restrictions fall under and input 0 into the other fields. Ie., If a project with 100 units has 30 designated affordable units where 15 are restricted for households earning up to 50% AMI and 15 for those earning up to 80% AMI, input 15 into Units 30-50% AMI and 15 into Units 50-80% AMI and 0 for the rest. If you know there are 30 units that are designated affordable but dont known the AMI restrictions, input 0 into all fields and 30 into Unknown.',
+        'If there are restrictions that dont fall neatly into the ranges, ie., if units are designated affordable between 30-60% AMI, input the units into the 30-50% AMI range and make sure to include the specific AMI in the Descriptions.',
       ],
     },
     ESTIMATED_AND_REPORTED_EMPLOYMENT: {
@@ -251,14 +201,6 @@ const content = {
     TRAFFIC_COUNT_DATA: {
       label: 'Traffic Count URL',
       definition: ['A URL linking to the Caltrans DOT Transportation Impact Assessment Monitoring Report database or another source of data about traffic monitoring/traffic counts.']
-    },
-    STUDENT_ENROLLMENT_KTOHIGH: {
-      label: 'Enrollment Kindergarten to 12th Grade',
-      definition: ['Estimated or reported student Enrollment from Kindergarten to 12th Grade for the development dedicated to education uses.']
-    },
-    STUDENT_ENROLLMENT_UNIVERSITY: {
-      label: 'Enrollment University',
-      definition: ['Estimated or reported university student Enrollment for the development dedicated to college education uses.']
     },
   }, // End of Glossary
 
@@ -332,42 +274,6 @@ const content = {
         'If the unit types are unknown, enter the number of housing units here.',
       ],
     },
-    EDUCATION_EMPLOYMENT: {
-      label: 'Education',
-      definition: ['Employment of the development dedicated to educational uses.'],
-    },
-    FOOD_EMPLOYMENT: {
-      label: 'Food Service',
-      definition: ['Employment of the development dedicated to food prepartion or services uses.'],
-    },
-    GOVERNMENT_EMPLOYMENT: {
-      label: 'Government',
-      definition: ['Employment of the development dedicated to government uses.'],
-    },
-    INDUSTRY_EMPLOYMENT: {
-      label: 'Industry',
-      definition: ['Employment of the development dedicated to industry uses.'],
-    },
-    MEDICAL_EMPLOYMENT: {
-      label: 'Medical Service',
-      definition: ['Employment of the development dedicated to medical service uses.'],
-    },
-    OFFICE_EMPLOYMENT: {
-      label: 'Office',
-      definition: ['Employment of the development dedicated to office uses.'],
-    },
-    OTHER_EMPLOYMENT: {
-      label: 'Other',
-      definition: ['Employment of the development dedicated to other uses.'],
-    },
-    RETAIL_EMPLOYMENT :{
-      label: 'Retail',
-      definition: ['Employment of the development dedicated to retail uses.'],
-    },
-    SERVICE_EMPLOYMENT: {
-      label: 'Service',
-      definition: ['Employment of the development dedicated to service uses.'],
-   },
   }
 };
 

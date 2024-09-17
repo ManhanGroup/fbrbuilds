@@ -15,8 +15,8 @@ class Edit < ApplicationRecord
 
   def groundbroken_required_attributes
     ["singfamhu", "multifam", 
-     "affrd_unit", "aff_u50", "aff_50_80", "aff_80_120",
-     "aff_120p", "gqpop", "ret_sqft", "ofcmd_sqft", "indmf_sqft", "whs_sqft",
+     "affrd_unit", "aff_u30", "aff_50_80", "aff_30_50",
+     "aff_80p", "gqpop", "ret_sqft", "ofcmd_sqft", "indmf_sqft", "whs_sqft",
      "rnd_sqft", "ei_sqft", "other_sqft", "hotel_sqft", "hotelrms",
      "publicsqft"]
   end
@@ -30,9 +30,6 @@ class Edit < ApplicationRecord
         "name": {
           "type": "string"
         },
-        "notes": {
-          "type": "string"
-        },
         "year_compl": {
           "type": "number"
         },
@@ -40,9 +37,6 @@ class Edit < ApplicationRecord
           "type": "boolean"
         },
         "status": {
-          "type": "string"
-        },
-        "stat_comts": {
           "type": "string"
         },
         "address": {
@@ -76,6 +70,9 @@ class Edit < ApplicationRecord
         "stalled": {
           "type": "boolean"
         },
+        "mixed_use": {
+          "type": "boolean"
+        },
         "headqtrs": {
           "type": "boolean"
         },
@@ -83,12 +80,6 @@ class Edit < ApplicationRecord
           "type": "boolean"
         },
         "prj_url": {
-          "type": "string"
-        },
-        "gluc": {
-          "type": "string"
-        },
-        "placetype": {
           "type": "string"
         },
         "state": {
@@ -110,6 +101,12 @@ class Edit < ApplicationRecord
           "type": "number"
         },
         "prjarea": {
+          "type": "number"
+        },
+        "height": {
+          "type": "number"
+        },
+        "stories": {
           "type": "number"
         },
         "singfamhu": {
@@ -202,22 +199,19 @@ class Edit < ApplicationRecord
         "affrd_unit": {
           "type": "number"
         },
-        "aff_u50": {
+        "aff_u30": {
+          "type": "number"
+        },
+        "aff_30_50": {
           "type": "number"
         },
         "aff_50_80": {
           "type": "number"
-        },
-        "aff_80_120": {
-          "type": "number"
-        },
-        "aff_120p": {
+        },        
+        "aff_80p": {
           "type": "number"
         },
         "park_type": {
-          "type": "string"
-        },
-        "sb_type": {
           "type": "string"
         },
         "publicsqft": {
@@ -234,55 +228,12 @@ class Edit < ApplicationRecord
         },
         "mf2_4": {
           "type": "number"
-
         },
         "mf5up": {
           "type": "number"
         },
         "mobile":{
           "type": "number"
-        },
-        "school": {
-          "type": "boolean"
-        },
-        "studk12p":{
-          "type": "number"
-        },
-        "studunip":{
-          "type": "number"
-        },
-        "empedu":{
-          "type": "number"
-        },
-        "empfoo":{
-          "type": "number"
-        },
-        "empgov":{
-          "type": "number"
-        },
-        "empind":{
-          "type": "number"
-        },
-        "empmed":{
-          "type": "number"
-        },
-        "empofc":{
-          "type": "number"
-        }, 
-        "empoth":{
-          "type": "number"
-        },
-        "empret":{
-          "type": "number"
-        },
-        "empsvc":{
-          "type": "number"
-        },
-        "rhna":{
-          "type": "boolean"
-        },
-        "ab1317":{
-          "type": "boolean"
         },
         "ispublic":{
           "type": "boolean"

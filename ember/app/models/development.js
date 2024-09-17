@@ -9,27 +9,23 @@ export default class extends DS.Model {
 
   @attr('string') name;
   @attr('string') status;
-  @attr('string') statComts;
   @attr('string') descr;
-  @attr('string') notes;
   @attr('string') prjUrl;
-  @attr('string') gluc;
-  @attr('string') placetype;
   @attr('string') tagline;
   @attr('string') nhood;
   @attr('string') address;
-  @attr('string', { default: 'CA' }) state;
+  @attr('string', { default: 'NC' }) state;
   @attr('string') zipCode;
   @attr('string') parkType;
-  @attr('string') sbType;
   @attr('string') parcelId;
   @attr('string') municipal;
   @attr('string') county;
   @attr('string') pinnum;
   @attr('string') devlper;
   @attr('string') trafficCountData;
-  @attr('string') mixDescr;
 
+  @attr('number') height;
+  @attr('number') stories;
   @attr('number') percomp25;
   @attr('number') percomp30;
   @attr('number') percomp35;
@@ -61,27 +57,14 @@ export default class extends DS.Model {
   @attr('number') units2bd;
   @attr('number') units3bd;
   @attr('number') affrdUnit;
-  @attr('number') affU50;
-  @attr('number') aff5080;
-  @attr('number') aff80120;
-  @attr('number') aff120p;
+  @attr('number') affU30;
+  @attr('number') aff3050;
+  @attr('number') aff5080;  
+  @attr('number') aff80p;
   @attr('number') affUnknown;
   @attr('number') publicsqft;
   @attr('number') projId;
-  @attr('number') mf24;
-  @attr('number') mf5up;
-  @attr('number') mobile;
-  @attr('number') studk12p;
-  @attr('number') studunip;
-  @attr('number') empedu;
-  @attr('number') empfoo;
-  @attr('number') empgov;
-  @attr('number') empind;
-  @attr('number') empmed;
-  @attr('number') empofc;
-  @attr('number') empoth;
-  @attr('number') empret;
-  @attr('number') empsvc;
+  
 
   @attr('boolean', { default: false }) rdv;
   @attr('boolean', { default: false }) asofright;
@@ -93,8 +76,6 @@ export default class extends DS.Model {
   @attr('boolean', { default: false }) mixedUse;
   @attr('boolean', { default: false }) yrcompEst;
   @attr('boolean', { default: false }) flag;
-  @attr('boolean', { default: false }) ab1317;
-  @attr('boolean', { default: false }) rhna;
   @attr('boolean', { default: true }) ispublic;
 
   @attr('date') createdAt;

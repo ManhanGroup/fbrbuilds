@@ -8,6 +8,7 @@ class Development < ApplicationRecord
   include PgSearch::Model
   include ActiveModel::Dirty
   pg_search_scope :search_by_name_and_location, against: [:name, :municipal, :address, :pinnum], using: { tsearch: { any_word: true } }
+  scope :exclude_before_2020, -> { where.not('your_attribute < ?', 2020) }
   validates :name, :status, :latitude, :longitude, :year_compl, :hu,
             :commsf, :descr, presence: true
   validates_inclusion_of :rdv, :asofright, :clusteros, :phased, :stalled, :mixed_use,
@@ -20,10 +21,10 @@ class Development < ApplicationRecord
     groundbroken.validates :singfamhu
     groundbroken.validates :multifam
     groundbroken.validates :affrd_unit
-    groundbroken.validates :aff_u50
+    groundbroken.validates :aff_u30
     groundbroken.validates :aff_50_80
-    groundbroken.validates :aff_80_120
-    groundbroken.validates :aff_120p
+    groundbroken.validates :aff_30_50
+    groundbroken.validates :aff_80p
     groundbroken.validates :gqpop
     groundbroken.validates :ret_sqft
     groundbroken.validates :ofcmd_sqft

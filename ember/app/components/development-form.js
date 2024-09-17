@@ -21,13 +21,13 @@ export default class extends Component {
     this.fulfilled = false;
 
     this.selectedParkTypes = (this.editing.parkType || '').split(',').filter(x => x);
-    this.selectedSbTypes = (this.editing.sbType || '').split(',').filter(x => x);
+
 
     this.knownAffordableFields = [
-      'affU50',
+      'affU30',
+      'aff3050',
       'aff5080',
-      'aff80120',
-      'aff120p',
+      'aff80p',
       'affUnknown'
     ];
 
@@ -63,23 +63,6 @@ export default class extends Component {
       'otherSqft',
       'hotelSqft',      
     ];
-
-    this.srtaEmpFields=[      
-      'empedu',
-      'empfoo',
-      'empgov',
-      'empind',
-      'empmed',
-      'empofc', 
-      'empoth',
-      'empret',
-      'empsvc'
-    ];
-
-    this.srtaSchoolFields=[
-      'studk12p',
-      'studunip',
-    ]
 
     this.allCommercialAreaFields = [
       ...this.knownCommercialFields,
@@ -192,12 +175,6 @@ export default class extends Component {
   @action
   updateStatus() {
     this.handleUpdate('status');
-    this.updateFieldRequirements();
-  }
-
-  @action
-  updateGluc() {
-    this.handleUpdate('gluc');
     this.updateFieldRequirements();
   }
 
@@ -318,10 +295,10 @@ export default class extends Component {
         : calculatedValue;
 
     // Adjust values if nonstandard
-    if (fieldName === 'status'|| fieldName === 'gluc') {
+    if (fieldName === 'status') {
       edited = document.querySelector(`select[name="${fieldName}"]`).value;
     }
-    else if (fieldName === 'parkType' || fieldName === 'sbType') {
+    else if (fieldName === 'parkType') {
       edited = Array.from(document.querySelectorAll(`input.field-${fieldName}`))
                     .filter(x => x.checked)
                     .map(x => x.name);

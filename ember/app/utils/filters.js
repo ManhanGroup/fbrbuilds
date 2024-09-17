@@ -2,7 +2,6 @@ import { copy } from '@ember/object/internals';
 import { get } from '@ember/object';
 import { decamelize } from '@ember/string';
 import { statusOptions } from 'fbrbuilds/utils/status-colors';
-import { glucOptions } from 'fbrbuilds/utils/gluc-dicts';
 import { capitalize } from 'fbrbuilds/helpers/capitalize';
 import Development from 'fbrbuilds/models/development';
 
@@ -44,17 +43,10 @@ const filters = {
   // Key Info
 
   'status': { name: 'Status', glossaryKey: 'STATUS', type: 'string', options: statusOptions, ...defaultMetric },
-  'statComts': { name: 'Status Comments', glossaryKey: 'STATUS_COMMENTS', type: 'string', ...defaultMetric },
   'totalCost': { name: 'Total cost', glossaryKey: 'COST_OF_CONSTRUCTION', type: 'number', ...defaultMetric },
-  'placetype': { name: 'Place_Type', glossaryKey: 'PLACE_TYPE', type: 'string', ...defaultMetric },
-  //'gluc': { name: 'gluc', glossaryKey: 'GLUC', type: 'string', ...defaultMetric },
-  'gluc': { name: 'Gluc', glossaryKey: 'GLUC', type: 'string', options: glucOptions, ...defaultMetric }, 
   'parkType': { name: 'Parking type', type: 'string', options: ['garage', 'underground', 'surface', 'other'], ...defaultMetric },
-  'ab1317': { name: 'AB1317', glossaryKey: 'AB1317', type: 'boolean', ...defaultMetric },
-  
-  'sbType': { name: 'SB type', type: 'string', options: ['SB6', 'SB8', 'Other'], ...defaultMetric },
+   
   'descr': { name: 'Description', glossaryKey: 'DESCRIPTION', type: 'string', ...defaultMetric },
-  'notes': { name: 'NOTES', glossaryKey: 'NOTES', type: 'string', ...defaultMetric },
   'projId': { name: 'PROJ ID', glossaryKey: 'PROJID', type: 'number', ...defaultMetric },
   'projIdPresent': { name: 'PROJECT ID Present', glossaryKey: 'PROJID_PRESENT', type: 'boolean', ...defaultMetric },
  // 'apn': { name: 'Parcel APN', glossaryKey: 'APN', type: 'string', ...defaultMetric },
@@ -67,15 +59,16 @@ const filters = {
   'percomp_35': { name: 'Percent complete by year 2035', glossaryKey: 'PERCOMP35', type: 'number', ...defaultMetric },
   'percomp_40': { name: 'Percent complete by year 2040', glossaryKey: 'PERCOMP40', type: 'number', ...defaultMetric },
   'percomp_45': { name: 'Percent complete by year 2045', glossaryKey: 'PERCOMP45', type: 'number', ...defaultMetric },
+  'stories': { name: 'Stories', glossaryKey: 'STORIES', type: 'number', ...defaultMetric },
+ 
   'mixedUse': { name: 'Mixed use', glossaryKey: 'MIXED_USE', type: 'boolean', ...defaultMetric },
-  'mixDescr': { name: 'Mixed use description', glossaryKey: 'MIXED_USE_DESCR', type: 'boolean', ...defaultMetric },
-   
-  'rhna': { name: 'Completed in Current RHNA Cycle?', glossaryKey: 'RHNA',  type: 'boolean', ...defaultMetric }, 
   'yearCompl': { name: 'Year complete', glossaryKey: 'YEAR_COMPLETE', type: 'number', ...defaultMetric },
   'yrcompEst': { name: 'Completion year is estimated',  type: 'boolean', ...defaultMetric },
   'prjarea': { name: 'Project area', glossaryKey: 'PROJECT_AREA', type: 'number', unit: 'sqft', ...defaultMetric },
   'publicsqft': { name: 'Public area', glossaryKey: 'PUBLIC_AREA', type: 'number', ...defaultMetric },
-  'nTransit': { name: 'Distance to transit', type: 'number', ...defaultMetric },
+  'onsitepark': { name: 'Parking spaces', glossaryKey: 'PARKING_SPACES', type: 'number', ...defaultMetric },
+  'dNTrnsit': { name: 'Distance to transit', type: 'number', ...defaultMetric },
+  'height': { name: 'Height', glossaryKey: 'HEIGHT', type: 'number', unit: 'ft', ...defaultMetric },
   
   'clusteros': { name: 'Cluster development.', type: 'boolean', ...defaultMetric },
   'floodzone': { name: 'In flood zone', type: 'boolean', ...defaultMetric },
@@ -90,10 +83,10 @@ const filters = {
   'units2bd': { name: '2 Bedroom units', type: 'number', ...defaultMetric },
   'units3bd': { name: '3 Bedroom units', type: 'number', ...defaultMetric },
   'affrdUnit': { name: 'Affordable units', glossaryKey: 'AFFORDABLE_UNITS', type: 'number', ...defaultMetric },
-  'affU50': { name: 'Units <50% AMI', type: 'number', ...defaultMetric },
-  'aff_50_80': { name: 'Units 50-80% AMI', type: 'number', ...defaultMetric },
-  'aff_80_120': { name: 'Units 80-120% AMI', type: 'number', ...defaultMetric },
-  'aff_120p': { name: 'Above Units 120% AMI', type: 'number', ...defaultMetric },
+  'affU30': { name: 'Units <30% AMI', type: 'number', ...defaultMetric },
+  'aff3050': { name: 'Units 30-50% AMI', type: 'number', ...defaultMetric },
+  'aff5080': { name: 'Units 50-80% AMI', type: 'number', ...defaultMetric },
+  'aff80p': { name: 'Units >=80% AMI', type: 'number', ...defaultMetric },
   'gqpop': { name: 'Group quarters population', type: 'number', ...defaultMetric },
 
   'asofright': { name: 'As of Right', glossaryKey: 'AS_OF_RIGHT', type: 'boolean', ...defaultMetric },
@@ -120,20 +113,7 @@ const filters = {
   
   'headqtrs': { name: 'Company HQ', glossaryKey: 'COMPANY_HEADQUARTERS', type: 'boolean', ...defaultMetric },
   
-  //srta only
   
-  'studunip': {name: 'Enrollment University', glossaryKey: 'STUDENT_ENROLLMENT_UNIVERSITY', type: 'number', ...defaultMetric},
-  'studk12p': {name: 'Enrollment Kindergarten to 12th Grade', glossaryKey: 'STUDENT_ENROLLMENT_KTOHIGH', type: 'number', ...defaultMetric},
-  'empedu': {name: 'Education', glossaryKey: 'EDUCATION_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empfoo': {name: 'Food Service', glossaryKey: 'FOOD_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empgov': {name: 'Government', glossaryKey: 'GOVERNMENT_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empind': {name: 'Industry', glossaryKey: 'INDUSTRY_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empmed': {name: 'Medical Service', glossaryKey: 'MEDICAL_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empofc': {name: 'Office', glossaryKey: 'OFFICE_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empoth': {name: 'Other', glossaryKey: 'OTHER_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empret': {name: 'Retail', glossaryKey: 'RETAIL_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empsvc': {name: 'Service', glossaryKey: 'SERVICE_EMPLOYMENT', type: 'number', ...defaultMetric},
- 
 
 };
 
@@ -146,13 +126,11 @@ const metricGroups = {
         'status',
         'totalCost',
         'yearCompl',
-        'rhna',
         'yrcompEst',
         'rdv',
         'phased',
         'stalled',
         'parkType',
-        'ab1317',
         'projId',
         'projIdPresent',
         'trafficCountData',
@@ -173,9 +151,7 @@ const metricGroups = {
       metrics: [
         'prjarea',
         'asofright',
-        'mixedUse',
-        'gluc',
-        'sbType'
+        'mixedUse'
       ]
     },
   ],
@@ -197,10 +173,10 @@ const metricGroups = {
       title: 'Affordability',
       metrics: [
         'affrdUnit',
-        'affU50',
+        'affU30',
+        'aff_30_50',
         'aff_50_80',
-        'aff_80_120',
-        'aff_120p',
+        'aff_80p',
       ]
     },
     {
@@ -211,14 +187,6 @@ const metricGroups = {
       ]
     },
   ],
-  'School': [
-    {
-      title: 'Enrollment',
-      metrics: [
-        'studk12p',
-        'studunip',
-      ]
-    }],
   'Commercial': [
     {
       title: 'General',
@@ -241,20 +209,6 @@ const metricGroups = {
       ]
     },
     {
-      title: 'Employment Makeup',
-      metrics: [
-        'empedu',
-        'empfoo',
-        'empgov',
-        'empind',
-        'empmed',
-        'empofc',
-        'empoth',
-        'empret',
-        'empsvc'
-      ]
-    },
-    {
       title: 'Other',
       metrics: [
         'headqtrs',
@@ -270,9 +224,7 @@ const blacklist = [
   'tagline',
   'parcelId',
   'programs',
-  'user',
-  'statComts',
-  'mixDescr'
+  'user'
 ];
 
 

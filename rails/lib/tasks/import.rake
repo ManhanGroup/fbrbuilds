@@ -124,13 +124,10 @@ namespace :import do
         taz: row["taz"],
         pinnum: row["pinnum"],
         trunc: row["trunc"],
-        gluc: row["gluc"],
         placetype: row["placetype"],
         proj_id: row["proj_id"],
         stat_comts: row["stat_comts"],
         mix_descr: row["mix_descr"],
-        rhna: row["rhna"],
-        ab1317: row["ab1317"],
         notes: row["notes"],
         created_at: row["created_at"],
         updated_at: row["updated_at"] 

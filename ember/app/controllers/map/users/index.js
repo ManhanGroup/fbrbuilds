@@ -11,7 +11,7 @@ export default class extends Controller {
     super();
 
     this.roles = ['user', 'verified', 'municipal', 'admin', 'disabled'];
-    this.agencies = ['FBRMPO', null];
+    this.agencies = ['FBRMPO', 'Buncombe', 'Haywood', 'Madison', 'Transylvania', null];
     this.searchQuery = '';
     this.roleFilter = 'all';
   }

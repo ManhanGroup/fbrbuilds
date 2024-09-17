@@ -7,7 +7,7 @@ export default class extends Component {
 
   @service session
   @service store
-  @service lstrpas
+  @service lstcntys
 
 
   constructor() {
@@ -20,6 +20,7 @@ export default class extends Component {
     this.username = '';
     this.password = '';
     this.municipality = null;
+    this.county=null;
     this.agency=null;
     this.confirmPassword = '';
 
@@ -35,15 +36,15 @@ export default class extends Component {
   updateMunicipality(muni) {
     let mycity =this.get('store').peekRecord('place', muni);
     let cityname=mycity.get('namelsad');
-    let rpaname = mycity.get('rpa').get('acronym');
+    let cnty = mycity.get('county').get('county');
     this.set('municipality', cityname);
-    this.set('agency', rpaname);
+    this.set('county', cnty);
   }
 
  
   @action
-  updateAgency(agency) {
-    this.set('agency', agency);
+  updateCounty(county) {
+    this.set('county', county);
   }
 
 
@@ -74,22 +75,24 @@ export default class extends Component {
     const requesting = this.get('requesting');
     const municipality = requesting == 'municipal'
         ? this.get('municipality')
-        : (requesting == 'state' ? 'STATE' : null);
-    const agency = requesting=='state'
-        ? this.get('agency') 
+        : null;
+    const agency = requesting=='county'
+        ? this.get('county') 
         :(requesting == 'municipal'
-          ? this.get('agency')
+          ? this.get('county')
           :(email.endsWith('landofsky.org')
             ? 'FBRMPO' 
-            :(email.endsWith('srta.org')
-              ? 'SRTA' 
-              : (email.endsWith('slocog.org')
-                ? 'SLOCOG' 
-                : (email.endsWith('bcag.org')
-                  ? 'BCAG'
-                  : (email.endsWith('trpa.org')
-                    ? 'TRPA'
-                    : null))))));
+            :(email.endsWith('buncombecounty.org')
+              ? 'Buncombe' 
+              : (email.endsWith('haywoodcounty.org')
+                ? 'Haywood' 
+                : (email.endsWith('hendersoncounty.org')
+                  ? 'Henderson'
+                  : (email.endsWith('madisoncounty.org')
+                    ? 'Madison'
+                    : (email.endsWith('transylvaniacounty.org')
+                      ? 'Transylvania'
+                      : null)))))));
    
     const requestVerifiedStatus = !!requesting;
 
