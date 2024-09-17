@@ -120,7 +120,7 @@ class DevelopmentsController < ApplicationController
                   :commercial, :municipal, :devlper, :yrcomp_est, :units_1bd, :units_2bd, :units_3bd,
                   :affrd_unit, :aff_u30, :aff_30_50, :aff_50_80,  :aff_80p, :headqtrs, :park_type, :publicsqft,
                   :unknownhu, :aff_unknown, :unk_sqft, :flag, :traffic_count_data_present, :proj_id,:proj_id_present,
-                  :traffic_count_data, :mf2_4,:mf5up,:mobile)
+                  :traffic_count_data, :mf2_4,:mf5up,:mobile,:d_n_trnsit)
   end
 
   # Only allow a trusted parameter "white list" through.
@@ -139,7 +139,7 @@ class DevelopmentsController < ApplicationController
                                                                        commercial municipal devlper yrcomp_est units_1bd units_2bd units_3bd
                                                                        affrd_unit aff_u30 aff_50_80 aff_30_50 aff_8op headqtrs park_type publicsqft
                                                                        unknownhu aff_unknown unk_sqft flag proj_id traffic_count_data proj_id_present traffic_count_data_present
-                                                                       mf2_4 mf5up mobile ispublic])
+                                                                       mf2_4 mf5up mobile ispublic d_n_trnsit])
       end
     end
   end

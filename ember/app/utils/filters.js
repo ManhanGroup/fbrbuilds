@@ -166,7 +166,8 @@ const metricGroups = {
         'units2bd',
         'units3bd',
         'mf2_4',
-        'mf5up'
+        'mf5up',
+        'mobile'
       ]
     },
     {
@@ -220,7 +221,6 @@ const metricGroups = {
 
 
 const blacklist = [
-  'notes',
   'tagline',
   'parcelId',
   'programs',
