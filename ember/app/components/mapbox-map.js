@@ -10,7 +10,6 @@ import config from 'fbrbuilds/config/environment';
 import paintProperties from 'fbrbuilds/utils/paint-properties';
 
 mapboxgl.accessToken = config.MAPBOX_ACCESS_TOKEN;
-
 export default class extends Component {
   @service store;
   @service map;
@@ -42,7 +41,7 @@ export default class extends Component {
   didInsertElement() {
     const mapService = this.get('map');
     //let mapStyle = 'mapbox://styles/mapbox/light-v9';
-    let mapStyle = 'mapbox://styles/yacwang/clhxyovj800to01rh2gaeb2li';
+    let mapStyle = 'mapbox://styles/yacwang/clhxyovj800to01rh2gaeb2li/';
     if (mapService.get('baseMap') == 'satellite') {
       mapStyle = 'mapbox://styles/yacwang/clllz6b6r00mh01poeo0v26m1';
     }

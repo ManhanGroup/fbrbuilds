@@ -84,9 +84,9 @@ const filters = {
   'units3bd': { name: '3 Bedroom units', type: 'number', ...defaultMetric },
   'affrdUnit': { name: 'Affordable units', glossaryKey: 'AFFORDABLE_UNITS', type: 'number', ...defaultMetric },
   'affU30': { name: 'Units <30% AMI', type: 'number', ...defaultMetric },
-  'aff3050': { name: 'Units 30-50% AMI', type: 'number', ...defaultMetric },
-  'aff5080': { name: 'Units 50-80% AMI', type: 'number', ...defaultMetric },
-  'aff80p': { name: 'Units >=80% AMI', type: 'number', ...defaultMetric },
+  'aff_30_50': { name: 'Units 30-50% AMI', type: 'number', ...defaultMetric },
+  'aff_50_80': { name: 'Units 50-80% AMI', type: 'number', ...defaultMetric },
+  'aff_80p': { name: 'Units >=80% AMI', type: 'number', ...defaultMetric },
   'gqpop': { name: 'Group quarters population', type: 'number', ...defaultMetric },
 
   'asofright': { name: 'As of Right', glossaryKey: 'AS_OF_RIGHT', type: 'boolean', ...defaultMetric },
@@ -162,11 +162,11 @@ const metricGroups = {
         'hu',
         'singfamhu',
         'multifam',
+        'mf2_4',
+        'mf5up',
         'units1bd',
         'units2bd',
         'units3bd',
-        'mf2_4',
-        'mf5up',
         'mobile'
       ]
     },
