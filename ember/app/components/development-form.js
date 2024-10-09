@@ -21,7 +21,9 @@ export default class extends Component {
     this.fulfilled = false;
 
     this.selectedParkTypes = (this.editing.parkType || '').split(',').filter(x => x);
+    this.selectedDamageTypes = (this.editing.damageType || '').split(',').filter(x => x);
 
+    
 
     this.knownAffordableFields = [
       'affU30',
@@ -99,7 +101,17 @@ export default class extends Component {
       ...this.miscResidentialFields,
     ];
 
+    this.heleneFields=[
+      'isDamage',
+      'name',
+      'status',
+      'latitude',
+      'longitude',
+      'descr',
+    ];
+
     const base = [
+      'isDamage',
       'name',
       'status',
       'latitude',
@@ -135,6 +147,10 @@ export default class extends Component {
       ...this.miscCommercialFields,
     ];
 
+    const damaged = [
+      ...this.heleneFields,
+    ];
+
     this.lastEdit = Date.now();
 
     this.criteria = {
@@ -143,6 +159,7 @@ export default class extends Component {
       in_construction: groundBroken,
       planning: proposed,
       projected: projected,
+      damaged: damaged,
     };
 
     later(this, () => this.updateFieldRequirements(), 500);
@@ -304,7 +321,13 @@ export default class extends Component {
                     .map(x => x.name);
       this.set('selectedParkTypes', edited);
     }
-    
+    else if (fieldName === 'damageType') {
+      edited = Array.from(document.querySelectorAll(`input.field-${fieldName}`))
+                    .filter(x => x.checked)
+                    .map(x => x.name);
+      this.set('selecteddamageTypes', edited);
+    }   
+
     if (typeof edited === 'boolean') {
       edited = !edited;
     }
@@ -312,6 +335,19 @@ export default class extends Component {
     // Send updates to controller state
     this.sendAction('updateEditing', { [fieldName]: edited });
     this.set(`editing.${fieldName}`, edited);
+
+    if (fieldName === 'isDamage') {
+      const status = edited ? 'damaged' : 'planning';
+      this.sendAction('updateEditing', { ['status']: status });
+            
+      this.set("editing.status", status);
+      this.updateFieldRequirements();
+      
+      
+      
+      
+    }
+
     // If value changed, set proposedChanges
     if ((
       modeled === undefined
@@ -333,6 +369,7 @@ export default class extends Component {
       }
     }
     this.set('lastEdit', Date.now());
+    
     this.checkCriteria();
   }
 

@@ -11,6 +11,7 @@ export default class extends Service {
     this.message = null;
     this.mode = null;
     this.timer = null;
+    this.isDamage=null;
   }
 
 
@@ -25,6 +26,11 @@ export default class extends Service {
 
   error(message) {
     this.show(message, { mode: 'error' });
+  }
+
+  @action
+  setDamage(isDamage){
+    this.isDamage=isDamage;
   }
 
 }

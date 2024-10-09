@@ -23,6 +23,7 @@ export default class extends DS.Model {
   @attr('string') pinnum;
   @attr('string') devlper;
   @attr('string') trafficCountData;
+  @attr('string') damageType;
 
   @attr('number') height;
   @attr('number') stories;
@@ -77,6 +78,7 @@ export default class extends DS.Model {
   @attr('boolean', { default: false }) yrcompEst;
   @attr('boolean', { default: false }) flag;
   @attr('boolean', { default: true }) ispublic;
+  @attr('boolean', { default: true }) isDamage;
 
   @attr('date') createdAt;
   @attr('date') updatedAt;
@@ -94,6 +96,6 @@ export default class extends DS.Model {
     const address = props.address || 'Unknown Address';
     const municipal = props.municipal || 'Unknown City';
     const zipCode = props.zipCode || '';
-    return `${address}, ${municipal}, ${props.state || 'CA'} ${zipCode}`;
+    return `${address}, ${municipal}, ${props.state || 'NC'} ${zipCode}`;
   }
 }

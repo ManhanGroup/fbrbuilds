@@ -41,7 +41,7 @@ export default class extends Component {
   didInsertElement() {
     const mapService = this.get('map');
     //let mapStyle = 'mapbox://styles/mapbox/light-v9';
-    let mapStyle = 'mapbox://styles/yacwang/clhxyovj800to01rh2gaeb2li/';
+    let mapStyle = 'mapbox://styles/yacwang/clhxyovj800to01rh2gaeb2li';
     if (mapService.get('baseMap') == 'satellite') {
       mapStyle = 'mapbox://styles/yacwang/clllz6b6r00mh01poeo0v26m1';
     }
@@ -440,6 +440,7 @@ export default class extends Component {
         yrcompEst: dev.get('yrcompEst'),
         yearCompl: dev.get('yearCompl'),
         ispublic: dev.get('ispublic'),
+        isDamage: dev.get('isDamage'),
       },
       geometry: {
         type: 'Point',

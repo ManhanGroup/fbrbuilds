@@ -1,5 +1,5 @@
 <div class="development-panel-header">
-  <h1>Create Development</h1>
+  <h1>Report Damage/Create Development</h1>
 
   <div class="left-panel-links">
     {{#if (eq mode 'edit')}}
@@ -18,17 +18,27 @@
 </div>
 <form class="development-content">
   {{#overflow-scroll}}
-    <div class="development-header">
+      <div class="development-header">
+        <div class="field">
+          <label>Report real estate damage by Hurrican Helene?
+            {{input type="checkbox" checked=editing.isDamage click=(action checkForUpdated 'isDamage')}}
+          </label>
+      </div>
+
+      
 
       <div class="form-row required primary">
-        <label for="development_name" class="hidden">Development Name</label>
+        
+        <label for="development_name" class="hidden">'Development Name'</label>
         {{input
           id="development_name"
           value=editing.name
           class=(if inValid.name 'invalid')
-          placeholder="Development Name"
+          placeholder=(if editing.isDamage "Damage Name" "Development Name")
           input=(action checkForUpdated 'name')
         }}
+        
+        
       </div>
 
       <div class="form-row required secondary location-fields">
@@ -52,6 +62,7 @@
         <p><em>Drag map to set location</em></p>
       </div>
 
+      {{#unless editing.isDamage }}
       <div class="form-row secondary project-url">
         <img src="/assets/images/link.svg">
         {{input
@@ -60,6 +71,7 @@
           placeholder="Project Website"
           input=(action checkForUpdated 'prjUrl')}}
       </div>
+      {{/unless}}
 
     </div>
 
@@ -68,6 +80,7 @@
         <h4>Meta Data</h4>
         <div class="row">
           <div class="column">
+            {{#unless editing.isDamage }}
             <div class="field">
               <label>{{defined-term key='DEVELOPER'}}</label>
               {{input
@@ -76,6 +89,7 @@
                 placeholder="Enter Developer Name"
                 input=(action checkForUpdated 'devlper')}}
             </div>
+            {{/unless}}
             {{#if model.user}}
               <div class="field">
                 <label>Entry Created By</label>
@@ -117,6 +131,7 @@
                   input=(action checkForUpdated 'notes')}}
               </p>
             </div-->
+            {{#unless editing.isDamage }}
             <div class="field">
               <label>{{defined-term key='PROJID'}}</label>
               {{input
@@ -133,6 +148,7 @@
                 placeholder="Enter URL for Traffic Count Data"
                 input=(action checkForUpdated 'trafficCountData')}}
             </div>
+            {{/unless}}
           </div>
         </div>
       </article>
@@ -158,11 +174,13 @@
                 name="status"
                 onchange={{action updateStatus}}
               >
+
                 {{#unless editing.status}}
                   <option disabled selected>Select Status</option>
                 {{/unless}}
                 {{#each filters.status.options as |option|}}
-                  <option value={{option}} selected={{if (eq option editing.status) 'selected'}}>{{capitalize option}}</option>
+                  <option value={{option}}  
+                  selected={{if (eq option editing.status) 'selected'}} >{{capitalize option}}</option>
                 {{/each}}
               </select>
             </div>
@@ -172,7 +190,7 @@
         <div class="row">
           <div class="column">
             
-
+            {{#unless editing.isDamage}}
             <div class="field">
               <label for="yearCompl" class="required">
                 {{defined-term key='YEAR_COMPLETE'}}
@@ -253,9 +271,25 @@
                 placeholder="Percent complete in 2045"
                 input=(action checkForUpdated 'percomp45')}}
             </div>
-            {{/if}} 
+          {{/if}} 
+          {{/unless}}
 
-             <div class="field">
+          {{#if editing.isDamage}}
+          <div class="field">
+            <label for="damageType">Damage Type</label>
+            <ul class="multi-check-options">
+              {{#each filters.damageType.options as |option|}}
+                <li>
+                  {{input type="checkbox" class="field-damageType" name=option checked=(contains option selectedDamageTypes) click=(action checkForUpdated 'damageType')}}
+                  {{capitalize option}}
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+          {{/if}}
+
+          {{#unless editing.isDamage}}
+            <div class="field">
               <label for="totalCost">
                 {{defined-term key='COST_OF_CONSTRUCTION'}}
               </label>
@@ -275,10 +309,12 @@
                 class=(if inValid.prjarea 'invalid')
                 value=editing.prjarea placeholder="Enter here"
                 input=(action checkForUpdated 'prjarea')}}
-            </div>          
+            </div> 
+          {{/unless}}         
           </div>
 
-         <div class="column">
+        <div class="column">
+          {{#unless editing.isDamage}}
             <div class="field">
               <label for="height">
                 {{defined-term key='HEIGHT'}}
@@ -323,9 +359,11 @@
                 {{/each}}
               </ul>
             </div>
+          {{/unless}}
           </div>
         </div>
 
+        {{#unless editing.isDamage}}
         <p class="attributes">
           <label>Attributes:</label>
 
@@ -366,6 +404,7 @@
 
 
         </p>
+        {{/unless}}
       </article>
 
 
@@ -374,7 +413,7 @@
       {{#if developmentTypeEnabled}}
         <div class={{if developmentType 'decision-row' 'decision-row invalid'}}>
           <label>
-            Development Type
+            {{if editing.isDamage 'Damaged Real Estate Type' 'Development Type'}}
           </label>
           <div class="options">
             {{#radio-button
@@ -404,7 +443,7 @@
 
       {{#if (and developmentTypeEnabled (not developmentType))}}
         <div class="res-comm-placeholder">
-          <span>Please select a development type to continue</span>
+          <span>Please select a real estate type to continue</span>
         </div>
       {{/if}}
 

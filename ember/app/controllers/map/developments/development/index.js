@@ -34,6 +34,14 @@ export default class extends Controller {
       .join(', ');
   }
 
+  @computed('model.damageType')
+  get damageTypes() {
+    return (this.get('model.damageType') || '')
+      .split(',')
+      .map(capitalize)
+      .join(', ');
+  }
+
 
   @computed('model.ovr55', 'model.private')
   get residentialAttributes() {

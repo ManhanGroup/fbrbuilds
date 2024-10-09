@@ -9,8 +9,7 @@ class Development < ApplicationRecord
   include ActiveModel::Dirty
   pg_search_scope :search_by_name_and_location, against: [:name, :municipal, :address, :pinnum], using: { tsearch: { any_word: true } }
   scope :exclude_before_2020, -> { where.not('your_attribute < ?', 2020) }
-  validates :name, :status, :latitude, :longitude, :year_compl, :hu,
-            :commsf, :descr, presence: true
+  validates :name, :status, :latitude, :longitude, :descr, presence: true
   validates_inclusion_of :rdv, :asofright, :clusteros, :phased, :stalled, :mixed_use,
                          :headqtrs, :ovr55, :yrcomp_est, in: [true, false, nil]
   with_options if: :proposed?, presence: true do |proposed|
@@ -35,6 +34,10 @@ class Development < ApplicationRecord
     groundbroken.validates :other_sqft
     groundbroken.validates :hotel_sqft
     groundbroken.validates :hotelrms
+  end
+
+  with_options if: :damaged?, presence: true do |damaged|
+    damaged.validates :is_damage
   end
 
   before_save :update_point
@@ -146,6 +149,8 @@ class Development < ApplicationRecord
         loc_id: row["loc_id"],
         parcel_fy: row["parcel_fy"],
         updated_at: row["updated_at"],
+        is_damage: row['is_damage'],
+        damage_type: row['damage_type'],
       )
       development.user = user
       development.save(validate: false)
@@ -199,12 +204,18 @@ class Development < ApplicationRecord
     self.point = "POINT (#{longitude} #{latitude})"
   end
 
+  def update_damage_status
+    return if !latitude_changed? and !longitude_changed?
+    self.point = "POINT (#{longitude} #{latitude})"
+  end
+
   #use openstreetmap geocoding service only if parcel layer doesn't have address
   def geocode
     return if !saved_change_to_point?
     result = Faraday.get "https://nominatim.openstreetmap.org/reverse?format=geojson&lat=#{self.latitude}&lon=#{self.longitude}"
     
-    if result && JSON.parse(result.body)['features'].length > 0
+    #if result && JSON.parse(result.body)['features'].length > 0
+    if result && (parsed_result = JSON.parse(result.body)) && parsed_result['features'] && parsed_result['features'].length > 0
       properties = JSON.parse(result.body)['features'][0]['properties']
       logger.debug "entering geocoding"
       logger.debug properties['address']['city']
@@ -236,6 +247,10 @@ class Development < ApplicationRecord
 
   def groundbroken?
     status == ('in_construction' || 'completed')
+  end
+
+  def damaged?
+    is_damage?
   end
 
   def update_rpa

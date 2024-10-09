@@ -1,9 +1,10 @@
 const statusColors = {
+  'damaged': '#ff5733',
   'completed': '#33a02c',
   'in_construction': '#b2df8a',
   'planning': '#1f78b4',
   'projected': '#a6cee3',
-  'unverified': '#ff5733',
+  'unverified': '#000000',
   'deselected': '#888',
 };
 

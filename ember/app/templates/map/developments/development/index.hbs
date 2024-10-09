@@ -1,6 +1,6 @@
 <section class="route map-developments-development-index">
   <div class="development-panel-header">
-    <h1>View Development</h1>
+    <h1>{{if model.isDamage 'View Damage' 'View Development'}}</h1>
 
     <div class="left-panel-links">
       {{#link-to 'map'}}
@@ -30,6 +30,25 @@
         {{/if}}
 
       </div>
+    {{#if model.isDamage}}
+      <div class="detail-group">
+      <article>
+        <h4>Meta Data</h4>
+        <div class="field">
+          <label for="damageType">Damage Type</label>
+          {{#if damageTypes}}
+            {{damageTypes}}
+          {{else}}
+            <span class="unknown">Unknown</span>
+          {{/if}}
+        </div>
+
+      </article>
+    </div>
+
+    {{/if}}
+
+    {{#unless model.isDamage}}
 
       <div class="detail-group">
         <article>
@@ -591,6 +610,7 @@
           </article>
         </div>
       </div>
+    {{/unless}}
 
     <div class="actions">
       {{#loading-spinner message=flaggingMessage isLoading=isSettingFlag}}

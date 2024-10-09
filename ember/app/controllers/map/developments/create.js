@@ -59,11 +59,18 @@ export default class extends Controller {
 
     Object.keys(data).forEach(attr => model.set(camelize(attr), data[attr]));
 
-    model.set('state', 'CA');
+    model.set('state', 'NC');
     model.set('user', this.get('currentUser.user'));
 
     this.set('isCreating', true);
-    this.get('notifications').show('Creating Development. This may take a few minutes.');
+    if (data['is_damage']){
+      this.get('notifications').show('Create Damage Record. This may take a few minutes.');
+      model.set('status','damaged');      
+    }else{
+      this.get('notifications').show('Creating Development. This may take a few minutes.');
+    }
+    this.get('notifications').setDamage(data['is_damage']);
+    
 
     model
       .save()
@@ -92,7 +99,7 @@ export default class extends Controller {
 
   @action
   createEdit(data) {
-    data['state'] = 'CA';
+    data['state'] = 'NC';
     const newEdit = this.get('store').createRecord('edit', {
       user: this.get('currentUser.user'),
       approved: false,
@@ -107,7 +114,12 @@ export default class extends Controller {
         .then(() => {
           this.set('_editing', null);
           this.set('developmentType', null);
-          this.get('notifications').show(`You have created a new development. It may be published after review from a moderator.`);
+          if (data['is_damage']){
+            this.get('notifications').show(`You have reported a damage. It may be published after review from a moderator.`);
+          }else{
+            this.get('notifications').show(`You have created a new development. It may be published after review from a moderator.`);
+          }
+          
           this.transitionToRoute('map.moderations.for.user', this.get('currentUser.user.id'));
         })
         .catch(e => {

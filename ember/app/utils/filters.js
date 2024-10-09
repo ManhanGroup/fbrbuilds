@@ -41,11 +41,11 @@ const filters = {
   'county': {name: 'County', ...defaultDiscrete},
 
   // Key Info
-
+  'isDamage': { name: 'isDamage', glossaryKey: 'DAMAGE', type: 'boolean', ...defaultMetric },
+  'damageType': { name: 'Damage type', type: 'string', options: ['Building Damage', 'Crop Damage', 'Large Debris','other'], ...defaultMetric },
   'status': { name: 'Status', glossaryKey: 'STATUS', type: 'string', options: statusOptions, ...defaultMetric },
   'totalCost': { name: 'Total cost', glossaryKey: 'COST_OF_CONSTRUCTION', type: 'number', ...defaultMetric },
-  'parkType': { name: 'Parking type', type: 'string', options: ['garage', 'underground', 'surface', 'other'], ...defaultMetric },
-   
+  'parkType': { name: 'Parking type', type: 'string', options: ['garage', 'underground', 'surface', 'other'], ...defaultMetric },   
   'descr': { name: 'Description', glossaryKey: 'DESCRIPTION', type: 'string', ...defaultMetric },
   'projId': { name: 'PROJ ID', glossaryKey: 'PROJID', type: 'number', ...defaultMetric },
   'projIdPresent': { name: 'PROJECT ID Present', glossaryKey: 'PROJID_PRESENT', type: 'boolean', ...defaultMetric },

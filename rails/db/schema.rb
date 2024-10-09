@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_17_065401) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_08_033112) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -133,6 +133,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_17_065401) do
     t.decimal "d_n_trnsit"
     t.integer "height"
     t.integer "stories"
+    t.boolean "is_damage"
+    t.string "damage_type"
+    t.boolean "is_public"
     t.index ["deleted_at"], name: "index_developments_on_deleted_at"
   end
 

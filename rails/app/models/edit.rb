@@ -21,6 +21,10 @@ class Edit < ApplicationRecord
      "publicsqft"]
   end
 
+  def damaged_required_attributes
+    ["is_damage"]
+  end
+
   def base_schema
     {
       "title": "Edit",
@@ -163,9 +167,6 @@ class Edit < ApplicationRecord
         "longitude": {
           "type": "number"
         },
-        "mixed_use": {
-          "type": "boolean"
-        },
         "programs": {
           "type": "string"
         },
@@ -268,6 +269,13 @@ class Edit < ApplicationRecord
       groundbroken_required_attributes.each do |value|
         schema[:required] << value
       end
+    elsif updated_development_hash['is_damage']
+      values_to_remove = ["year_compl", "hu", "commsf"]
+      # Remove the specific values
+      schema[:required] -= values_to_remove
+      damaged_required_attributes.each do |value|
+        schema[:required] << value
+      end
     end
 
     updated_development_hash.each do |key, value|
@@ -289,6 +297,13 @@ class Edit < ApplicationRecord
       end
     elsif proposed_changes['status'] == ('in_construction' || 'completed')
       groundbroken_required_attributes.each do |value|
+        schema[:required] << value
+      end
+    elsif proposed_changes['is_damage']
+      values_to_remove = ["year_compl", "hu", "commsf"]
+      # Remove the specific values
+      schema[:required] -= values_to_remove
+      damaged_required_attributes.each do |value|
         schema[:required] << value
       end
     end

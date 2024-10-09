@@ -46,7 +46,7 @@
         <img src="/assets/images/plus.svg">
       </div>
 
-      Create Development
+      Report Damage/Create Development
     {{/link-to}}
 
     {{#link-to 'map.developments.for.user' currentUser.user.id click=(action closeMenu)}}
@@ -54,7 +54,7 @@
         <img src="/assets/images/map-pin.svg">
       </div>
 
-      My Developments
+      My Entries
     {{/link-to}}
 
     {{#unless (eq currentUser.user.role 'admin')}}
