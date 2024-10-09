@@ -13,6 +13,8 @@ export default class extends Controller {
   @service currentUser
   @service notifications
 
+  
+
   @computed('model', '_editing')
   get editing() {
     const { _editing, model } = this.getProperties('_editing', 'model');
@@ -33,16 +35,20 @@ export default class extends Controller {
     this.set('developmentType', devType);
   }
 
+  @action
+  updateIsDamage(isDamage) {
+    this.set('is_damage', isDamage);
+  }
+
 
   @computed('currentUser.user.role')
   get hasPublishPermissions() {
     return this.get('currentUser.user.role') !== 'user';
   }
 
-
-  @computed('hasPublishPermissions')
+  @computed('hasPublishPermissions', 'is_damage')
   get submitText() {
-    return this.get('hasPublishPermissions') ? 'Create Development' : 'Submit for Review';
+    return this.get('hasPublishPermissions') ? (this.get('is_damage')?'Report Damage':'Create Development') : 'Submit for Review';
   }
 
 
@@ -63,13 +69,13 @@ export default class extends Controller {
     model.set('user', this.get('currentUser.user'));
 
     this.set('isCreating', true);
-    if (data['is_damage']){
-      this.get('notifications').show('Create Damage Record. This may take a few minutes.');
-      model.set('status','damaged');      
+    if (this.get('is_damage')){
+      model.set('status','damaged');
+      this.get('notifications').show('Create Damage Record. This may take a few minutes.');   
     }else{
       this.get('notifications').show('Creating Development. This may take a few minutes.');
     }
-    this.get('notifications').setDamage(data['is_damage']);
+    
     
 
     model
@@ -78,7 +84,13 @@ export default class extends Controller {
         this.get('map').add(development);
         this.set('_editing', null);
         this.set('developmentType', null);
-        this.get('notifications').show(`You have created a new development called ${data.name}.`);
+        if (this.get('is_damage')){
+          this.get('notifications').show(`You have repported a new damage called ${data.name}.`);
+        }else{
+          this.get('notifications').show(`You have created a new development called ${data.name}.`);
+
+        }
+        
         this.transitionToRoute('map.developments.development', development);
       })
       .catch(e => {

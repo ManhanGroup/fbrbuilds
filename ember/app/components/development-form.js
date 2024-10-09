@@ -7,7 +7,7 @@ import { action, computed } from '@ember-decorators/object';
 
 export default class extends Component {
 
-  @service map
+  @service map;
   @service currentUser;
 
   constructor() {
@@ -21,7 +21,7 @@ export default class extends Component {
     this.fulfilled = false;
 
     this.selectedParkTypes = (this.editing.parkType || '').split(',').filter(x => x);
-    this.selectedDamageTypes = (this.editing.damageType || '').split(',').filter(x => x);
+    this.selectedDamageTypes = (typeof this.editing.parkType === 'string' ? this.editing.parkType : '').split(',').filter(x => x);
 
     
 
@@ -325,7 +325,7 @@ export default class extends Component {
       edited = Array.from(document.querySelectorAll(`input.field-${fieldName}`))
                     .filter(x => x.checked)
                     .map(x => x.name);
-      this.set('selecteddamageTypes', edited);
+      this.set('selectedDamageTypes', edited);
     }   
 
     if (typeof edited === 'boolean') {
@@ -337,14 +337,15 @@ export default class extends Component {
     this.set(`editing.${fieldName}`, edited);
 
     if (fieldName === 'isDamage') {
-      const status = edited ? 'damaged' : 'planning';
+      const status = edited ? 'damaged' : '';
+      this.sendAction('updateIsDamage', edited);
       this.sendAction('updateEditing', { ['status']: status });
             
       this.set("editing.status", status);
-      this.updateFieldRequirements();
-      
-      
-      
+      this.updateFieldRequirements();    
+      this.get('notifications').setDamage( edited ); 
+      //this.handleUpdate('status', status);
+      //this.updateFieldRequirements();
       
     }
 
@@ -374,6 +375,10 @@ export default class extends Component {
   }
 
   getCriteria() {
+    const status = this.get('editing.status');
+    if (status === '') {
+        return this.get('criteria.base');
+    }
     return this.get(`criteria.${this.get('editing.status')}`)
         || this.get('criteria.base');
   }
