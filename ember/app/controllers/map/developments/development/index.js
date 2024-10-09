@@ -14,7 +14,8 @@ export default class extends Controller {
     'model.phased',
     'model.stalled',
     'model.asofright',
-    'model.mixedUse'
+    'model.mixedUse',
+    'model.isDamage',
   )
   get keyAttributes() {
     return this.attributesFor({

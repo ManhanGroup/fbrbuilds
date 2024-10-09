@@ -1,6 +1,6 @@
 <section class="route map-developments-development-index">
   <div class="development-panel-header">
-    <h1>{{if model.isDamage 'View Damage' 'View Development'}}</h1>
+    <h1>{{if (eq model.status 'damaged') 'View Damage' 'View Development'}}</h1>
 
     <div class="left-panel-links">
       {{#link-to 'map'}}
@@ -30,7 +30,7 @@
         {{/if}}
 
       </div>
-    {{#if model.isDamage}}
+    {{#if (eq model.status 'damaged')}}
       <div class="detail-group">
       <article>
         <h4>Meta Data</h4>
@@ -48,7 +48,7 @@
 
     {{/if}}
 
-    {{#unless model.isDamage}}
+    {{#unless (eq model.status 'damaged')}}
 
       <div class="detail-group">
         <article>
